@@ -17,8 +17,8 @@ describe('director app unit tests', function() {
         expect(err).to.be.null;
         expect(res).to.have.status(200);
         });
-    })
-})
+    });
+});
     
 
 

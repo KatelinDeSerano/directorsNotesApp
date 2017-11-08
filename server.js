@@ -5,4 +5,4 @@ const app = express();
 app.get('/', (req,res) => {res.status(200).send("hello world")});
 app.listen(PORT, function() {
     console.log(`listening on port ${PORT}`)
-})
+});

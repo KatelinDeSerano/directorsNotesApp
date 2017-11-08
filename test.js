@@ -11,7 +11,7 @@ var expect  = require('chai').expect;
 describe('director app unit tests', function() {
 
     it('should verify server is running', function() {
-        return chai.request('http://localhost:8080')
+        return chai.request(server)
         .get('/')
         .then(function(res) {
             expect(res).to.have.status(200);

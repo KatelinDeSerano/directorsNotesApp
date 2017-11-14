@@ -2,13 +2,17 @@ var express = require('express');
 var app = express();
 var PORT = process.env.PORT || 9000;
 
+var signupRouter = express.Router();
 
 app.listen(PORT, function(err){
     console.log('running server on port ' + PORT);
 });
 
+app.use(express.static('public'));
+
+
 app.get('/', function(req, res) {
-    res.send('Hello World');
+    res.send('index');
  });
 
 app.get('/signup', function(req, res) {
@@ -27,10 +31,5 @@ app.get('/director', function(req, res) {
     res.send('Hello Director');
  });
  
-// var {PORT, DATABASE_URL} = require('./config.js');
-// landingpageRouter = require('./app.js');
 
-// app.listen(PORT, function() {
-//     console.log('listening on port' + PORT)
-// });
 

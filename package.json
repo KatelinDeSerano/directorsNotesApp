@@ -4,7 +4,8 @@
   "description": "App for giving production notes with ease",
   "main": "server.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

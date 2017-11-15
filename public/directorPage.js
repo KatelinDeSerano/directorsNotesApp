@@ -1,9 +1,20 @@
-url = "http://localhost:9000/actor"
-$.getJSON(url, function(MOCK_NOTES) {
-  console.log(MOCK_NOTES)
-    var option = '';
-    for (var i = 0; i < notes.length; i++) {
-        option += '<option value="' + notes[i].productionName + '">' + notes[i].productionName + '</option>';
+url = "http://localhost:9000/actor";
+$.getJSON(url, function(data) {
+  console.log(data.notes);
+    let html = "";
+    for (var i = 0; i < data.notes.length; i++) {
+        console.log(data.notes[i].productionName);
+
+     html += 
+            `<div class="dropdown">
+            <button class="dropbtn">`+ data.notes[i].productionName + `</button>
+            <div class="dropdown-content">
+              <a href="#">Actor 1</a>
+              <a href="#">Actor 2</a>
+              <a href="#">Actor 3</a>
+            </div>
+          </div>`
     }
-    $('#productionName').append(option);
+
+    $('#productionName').html(html);
 });

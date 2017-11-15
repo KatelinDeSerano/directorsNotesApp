@@ -17,15 +17,15 @@ app.get('/', function(req, res) {
 
 app.get('/actor', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify({ MOCK_NOTES}));
+    res.send(JSON.stringify({ notes: notes}));
  });
 
 app.get('/director', function(req, res) {
     res.send('Hello Director');
  });
 
- var MOCK_NOTES = {
-    "notes": [
+ var notes = [
+    
         {
             "id": "111111",
             "text": "You suck, do better",
@@ -63,7 +63,7 @@ app.get('/director', function(req, res) {
             "readStatus": true
         }
     ]
-};
+;
 
  
 

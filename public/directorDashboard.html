@@ -1,54 +1,60 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <title>Director's Dashboard</title>  
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
-        <link href="app.css" rel="stylesheet" type="text/css" />
-        <script src="./directorPage.js"></script>
-    </head>
-    <body>
-      
-        
-        <nav>
-        <ul class="sidenav">
-            <li><a class="active" href="#home">Home</a></li>
-            <h4>Productions</h4>
-                <div class="productionList">
-                
-                  
-                  <div class="dropdown">
-                    <button class="dropbtn">Production 1</button>
-                    <div class="dropdown-content">
-                      <a href="#">Actor 1</a>
-                      <a href="#">Actor 2</a>
-                      <a href="#">Actor 3</a>
-                    </div>
-                  </div>
-                  <div class="dropdown">
-                    <button class="dropbtn">Production 2</button>
-                    <div class="dropdown-content">
-                      <a href="#">Actor 1</a>
-                      <a href="#">Actor 2</a>
-                      <a href="#">Actor 3</a>
-                    </div>
-                    <div class="dropdown">
-                        <button class="dropbtn">Production 3</button>
-                        <div class="dropdown-content">
-                          <a href="#">Actor 1</a>
-                          <a href="#">Actor 2</a>
-                          <a href="#">Actor 3</a>
-                        </div>
-                </div>
-                <a href="#" class="button">Create New Production</a>
-          </ul>
-          
-        </nav>
 
-          <h1>Hello Director!</h1>
-           <div class="textblock"></div>
-    </body>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Director's Dashboard</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  <link href="app.css" rel="stylesheet" type="text/css" />
+  <script src="./directorPage.js"></script>
+</head>
+
+<body>
+
+
+  <nav>
+    <ul class="sidenav">
+      <li>
+        <a class="active" href="#home">Home</a>
+      </li>
+      <h4>Productions</h4>
+      <div class="productionList">
+
+        <div id="productionName"></div>
+
+        <!-- <div class="dropdown">
+          <button class="dropbtn" id="productionName">Production 1</button>
+          <div class="dropdown-content">
+            <a href="#">Actor 1</a>
+            <a href="#">Actor 2</a>
+            <a href="#">Actor 3</a>
+          </div>
+        </div> -->
+        <!-- <div class="dropdown">
+          <button class="dropbtn">Production 2</button>
+          <div class="dropdown-content">
+            <a href="#">Actor 1</a>
+            <a href="#">Actor 2</a>
+            <a href="#">Actor 3</a>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">Production 3</button>
+            <div class="dropdown-content">
+              <a href="#">Actor 1</a>
+              <a href="#">Actor 2</a>
+              <a href="#">Actor 3</a>
+            </div>
+          </div> -->
+          <a href="#" class="button">Create New Production</a>
+    </ul>
+
+  </nav>
+
+  <h1>Hello Director!</h1>
+  <div class="textblock"></div>
+</body>
+
 </html>

@@ -1,6 +1,3 @@
-var express = require('express');
-
-var appRoutes = express.Router();
 
 var MOCK_NOTES = {
     "notes": [

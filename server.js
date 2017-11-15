@@ -15,21 +15,56 @@ app.get('/', function(req, res) {
     res.send('index');
  });
 
-app.get('/signup', function(req, res) {
-    res.send('Hello Sign Up');
- });
-
-app.get('/login', function(req, res) {
-    res.send('Hello Log In');
- });
-
 app.get('/actor', function(req, res) {
-    res.send('Hello Actor');
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify({ MOCK_NOTES}));
  });
 
 app.get('/director', function(req, res) {
     res.send('Hello Director');
  });
+
+ var MOCK_NOTES = {
+    "notes": [
+        {
+            "id": "111111",
+            "text": "You suck, do better",
+            "authorId": "a1a1a1",
+            "authorName": "Steven Speilberg",
+            "actorId": "aaaaaa",
+            "actorName": "Dev Patel",
+            "productionId":"123456",
+            "productionName": "Harvey",
+            "publishedAt": 147001697669,
+            "readStatus": false
+        },
+        {
+            "id": "222222",
+            "text": "learn to sing",
+            "authorId": "b2b2b2",
+            "authorName": "Paul Finocchiaro",
+            "actorId": "bbbbbb",
+            "actorName": "Taylor Swift",
+            "productionId":"654321",
+            "productionName": "Miss Siagon",
+            "publishedAt": 147001697669,
+            "readStatus": false
+        },
+        {
+            "id": "333333",
+            "text": "be aware of where you are putting your cigarette",
+            "authorId": "a1a1a1",
+            "authorName": "Steven Speilberg",
+            "actorId": "aaaaaa",
+            "actorName": "Dev Patel",
+            "productionId":"123456",
+            "productionName": "Harvey",
+            "publishedAt": 147001697669,
+            "readStatus": true
+        }
+    ]
+};
+
  
 
 

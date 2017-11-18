@@ -1,18 +1,20 @@
 
-url = "http://localhost:9000/actor";
+url = "http://localhost:9000/productions";
 $.getJSON(url, function(data) {
-  console.log(data.notes);
+  console.log(data.productions);
     let html = "";
-    for (var i = 0; i < data.notes.length; i++) {
+    for (var i = 0; i < data.productions.length; i++) {
         // console.log(data.notes[i].productionName);
-        console.log(data.notes[i].actorName);
-     html += 
+        console.log(data.productions[i].actorName);
+      html += 
             `<div class="dropdown">
-            <button class="dropbtn">`+ data.notes[i].productionName + `</button>
-            <div class="dropdown-content">
-              <a href="#">` + (data.notes[i].actorName) + `</a>
-              <a href="#">` + (data.notes[i].actorName) + `</a>
-              <a href="#">` + (data.notes[i].actorName) + `</a>
+            <button class="dropbtn">`+ data.productions[i].productionName + `</button>
+            <div class="dropdown-content">`
+        
+      for (var j = 0; j < data.productions[i].actors.length; j++) {
+        html += `<a href="#"> ${data.productions[i].actors[j]} </a>`
+      }
+      html += `     
             </div>
           </div>`
     }

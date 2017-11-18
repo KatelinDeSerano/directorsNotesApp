@@ -20,55 +20,120 @@ app.get('/', function(req, res) {
     res.send('index');
  });
 
-app.get('/actor', function(req, res) {
+ app.get('/users', function(req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify({ users: users}));
+ });
+
+
+app.get('/notes', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ notes: notes}));
  });
 
-app.get('/director', function(req, res) {
-    res.send('Hello Director');
+ app.get('/productions', function(req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify({ productions: productions}));
  });
+
+
+ var productions = [
+    
+        {
+            "id": "111111",
+            "productionName": "Harvey",
+            "directorId": "a1a1a1",
+            "actors": [
+                "Dev Patel",
+                "Taylor Swift",
+                "Tom Hiddleston" ],            
+        },
+        {
+            "id": "222222",
+            "productionName": "The Glass Menagerie",
+            "directorId": "a1a1a1",
+            "actors": [
+                "Dev Patel",
+                "Taylor Swift",
+                "Tom Hiddleston" ],            
+        },
+        {
+            "id": "333333",
+            "productionName": "The Odyssey",
+            "directorId": "a1a1a1",
+            "actors": [
+                "Dev Patel",
+                "Taylor Swift",
+                "Tom Hiddleston" ],            
+        },
+    ]
+;
 
  var notes = [
     
         {
-            "id": "111111",
+            "id": "123456",
             "text": "You suck, do better",
-            "authorId": "a1a1a1",
-            "authorName": "Steven Speilberg",
+            "directorId": "abcdefg",
+            "directorName": "Steven Speilberg",
             "actorId": "aaaaaa",
             "actorName": "Dev Patel",
-            "productionId":"123456",
-            "productionName": "Harvey",
+            "productionId":"111111",
             "publishedAt": 147001697669,
             "readStatus": false
         },
         {
-            "id": "222222",
+            "id": "131313",
             "text": "learn to sing",
-            "authorId": "b2b2b2",
-            "authorName": "Paul Finocchiaro",
+            "directorId": "hijklmn",
+            "directorName": "Paul Finocchiaro",
             "actorId": "bbbbbb",
             "actorName": "Taylor Swift",
-            "productionId":"654321",
-            "productionName": "Miss Siagon",
+            "productionId":"222222",
             "publishedAt": 147001697669,
             "readStatus": false
         },
         {
-            "id": "333333",
+            "id": "454545",
             "text": "be aware of where you are putting your cigarette",
-            "authorId": "a1a1a1",
-            "authorName": "Steven Speilberg",
+            "directorId": "abcdefg",
+            "directorName": "Steven Speilberg",
             "actorId": "aaaaaa",
             "actorName": "Dev Patel",
-            "productionId":"123456",
-            "productionName": "Harvey",
+            "productionId":"111111",
             "publishedAt": 147001697669,
             "readStatus": true
         }
+    ];
+
+    var users = [
+        {
+            "id": "aaaaaa",
+            "name": "Dev Patel",
+            "type": "actor"
+        },
+        {
+            "id": "bbbbbb",
+            "name": "Taylor Swift",
+            "type": "actor"
+        },
+        {
+            "id": "cccccc",
+            "name": "Tom Hiddleston",
+            "type": "actor"
+        },
+        {
+            "id": "hijklmn",
+            "name": "Paul Finocchiaro",
+            "type": "director"
+        },
+        {
+            "id": "abcdefg",
+            "name": "Steven Speilberg",
+            "type": "director"
+        }
+    
     ]
-;
 
  
 

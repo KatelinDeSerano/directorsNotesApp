@@ -10,9 +10,9 @@ $.getJSON(url, function(data) {
             `<div class="dropdown">
             <button class="dropbtn">`+ data.notes[i].productionName + `</button>
             <div class="dropdown-content">
-              <a href="#">Actor 1</a>
-              <a href="#">Actor 2</a>
-              <a href="#">Actor 3</a>
+              <a href="#">` + (data.notes[i].actorName) + `</a>
+              <a href="#">` + (data.notes[i].actorName) + `</a>
+              <a href="#">` + (data.notes[i].actorName) + `</a>
             </div>
           </div>`
     }

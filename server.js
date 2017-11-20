@@ -133,7 +133,7 @@ app.get('/notes', function(req, res) {
             "type": "director"
         }
     
-    ]
+    ];
 
  
 

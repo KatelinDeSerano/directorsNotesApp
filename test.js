@@ -11,10 +11,10 @@ var expect  = require('chai').expect;
 describe('director app unit tests', function() {
     before(function() {
         
-    })
+    });
     after(function() {
         app.close();
-    })
+    });
 
     it('should verify server is running', function() {
         return chai.request(app)

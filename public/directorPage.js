@@ -19,14 +19,13 @@ $.getJSON(url, function(data) {
                </div>`;
     }
 
-
-
-
     $('#productionName').html(html);
     
 });
 
 function handleActorSelect(name) {
-  console.log(name);
-}
+  $("textarea").text("To " + name);
+};
+
+
 

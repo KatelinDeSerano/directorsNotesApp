@@ -27,5 +27,7 @@ function handleActorSelect(name) {
   $("textarea").text("To " + name);
 };
 
+// add function to handle message submit button
+
 
 

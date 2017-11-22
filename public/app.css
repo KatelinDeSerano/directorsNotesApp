@@ -153,3 +153,7 @@ textarea {
     margin-left: 30%;
     margin-right: 30%;
 }
+
+#sendBtn {
+    margin-left: 20rem;
+}

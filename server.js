@@ -31,8 +31,23 @@ app.get('/notes', function(req, res) {
     res.send(JSON.stringify({ notes: notes}));
 });
 
-app.get('/productions', function(req, res) {
+app.get('/note', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
+    let noteBox = [];
+    let productionId = req.query.id;
+    for (let i=0; i<notes.length; i++) {
+        if (productionId===notes[i].productionId && notes[i].actorId==="aaaaaa") {
+            noteBox.push(notes[i].text);
+        }
+
+    }
+    console.log(noteBox);
+   
+    res.send(JSON.stringify({noteBox}));
+});
+
+app.get('/productions', function(req, res) {
+    res.setHeader('Content-Type', 'application/json'); 
     res.send(JSON.stringify({ productions: productions}));
 });
 
@@ -40,7 +55,7 @@ app.get('/productions', function(req, res) {
 var productions = [
 
     {
-        "id": "111111",
+        "productionId": "111111",
         "productionName": "Harvey",
         "directorId": "a1a1a1",
         "actors": [
@@ -49,7 +64,7 @@ var productions = [
             "Tom Hiddleston" ],            
     },
     {
-        "id": "222222",
+        "productionId": "222222",
         "productionName": "The Glass Menagerie",
         "directorId": "a1a1a1",
         "actors": [
@@ -58,7 +73,7 @@ var productions = [
             "Tom Hiddleston" ],            
     },
     {
-        "id": "333333",
+        "productionId": "333333",
         "productionName": "The Odyssey",
         "directorId": "a1a1a1",
         "actors": [

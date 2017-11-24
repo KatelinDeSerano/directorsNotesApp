@@ -2,25 +2,43 @@ baseUrl = "http://localhost:9000";
 
 // REMEMBER to SEPARATE CONCERNS
 // do AJAX calls to 
-let displayProductions = (productions) => {
+let displayProductions = (data) => {
     let html = "";
-    for (var i = 0; i < productions.length; i++) {
+    for (var i = 0; i < data.productions.length; i++) {
         html += 
-              `<div class="dropdown">
-              <button class="dropbtn">`+ productions[i].productionName + `</button>
-              <div class="dropdown-content">`;
+              `<button class="dropbtn" onclick="displayNotes('${data.productions[i].productionId}')">`+ data.productions[i].productionName + `</button>`;  
     }
     $('#productionName').html(html);
 };
 
-let displayNotes = (notes) => {
-    let html = "";
-    for (var i = 0; i < data.notes.length; i++) {
-    console.log(data.notes[i].text);
-      html += 
-            `<h4>`+ data.notes[i].text + `<h4>`;
-    }
-    $('#notesDisplay').html(html);
+// let displayNotes = (data) => {
+//     let html = "";
+//     for (var i = 0; i < data.notes.length; i++) {
+//       html += 
+//             `<h4>`+ data.notes[i].text + `<h4>`;
+//     }
+//     $('#notesDisplay').html(html);
+// };
+
+// function handleProductionSelect(productionName) {
+//     if ()
+//     $("notesDisplay").text();
+//   };
+
+function displayNotes(productionId) {
+
+   console.log(productionId);
+   $.ajax ({
+        url: baseUrl + "/note?id="+productionId,
+        type: "GET",
+        dataType: "json",
+        success: displayNotes,
+        error: displayError
+    });
+
+    
+
+   
 };
 
 let displayError = (error) => {
@@ -42,3 +60,4 @@ $.ajax ({
     success: displayNotes,
     error: displayError
 });
+

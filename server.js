@@ -33,17 +33,15 @@ app.get('/notes', function(req, res) {
 
 app.get('/note', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
-    let noteBox = [];
+    let notesArray = [];
     let productionId = req.query.id;
     for (let i=0; i<notes.length; i++) {
         if (productionId===notes[i].productionId && notes[i].actorId==="aaaaaa") {
-            noteBox.push(notes[i].text);
+            notesArray.push(notes[i].text);
         }
 
     }
-    console.log(noteBox);
-   
-    res.send(JSON.stringify({noteBox}));
+    res.send(JSON.stringify({notesArray}));
 });
 
 app.get('/productions', function(req, res) {

@@ -13,7 +13,8 @@ let displayDropdownProductions = (data) => {
         
       for (var j = 0; j < data.productions[i].actors.length; j++) {
         var selectActor = data.productions[i].actors[j];
-        html += `<a id="actorList" onclick="handleActorSelect('${selectActor}')">${selectActor}</a>`;
+        var selectProduction = data.productions[i].productionName;
+        html += `<a id="actorList" onclick="handleActorSelect('${selectActor}', '${selectProduction}')">${selectActor}</a>`;
       }
       html += `</div>
                </div>`;
@@ -23,8 +24,9 @@ let displayDropdownProductions = (data) => {
     
 };
 
-function handleActorSelect(name) {
-  $("textarea").text("To " + name);
+function handleActorSelect(name, production) {
+  $("#actor").val(name);
+  $("#production").val(production);
 };
 
 $.ajax ({

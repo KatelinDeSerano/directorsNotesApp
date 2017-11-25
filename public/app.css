@@ -1,28 +1,37 @@
 body {
     margin: 0;
-    background-color: #FCF7F8f1;
+    background-color: grey;
     font-family: sans-serif;
 }
+nav {
+    display: inline-block;
+    width: 25%;
+    position: fixed;
+    height: 100%;
+}
 
+.content {
+    display: inline-block;
+    width: 75%;
+}
+
+#msgform {
+    width: 100%;
+}
 ul.sidenav {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 15rem;
     background-color: #FFFFFF;
-    position: fixed;
-    height: 100%;
     overflow: auto;
     box-shadow: 5px 5px 10px #C3BAAA;
-
 }
 
 ul.sidenav li a {
     display: block;
     color: #3C4042;
     padding: 20px 16px;
-    text-decoration: none;
-    
+    text-decoration: none;    
 }
  
 ul.sidenav li a.active {
@@ -110,7 +119,6 @@ div.content {
 /* Change the background color of the dropdown button when the dropdown content is shown */
 
 h1 {
-    margin: auto;
     text-align: center;
     color: #3C4042;
 }
@@ -120,7 +128,7 @@ h4 {
     color: #3C4042'
 }
 
-.button {
+.newProductionButton {
     background-color: gray;
     border: none;
     color: white;
@@ -140,11 +148,14 @@ h4 {
 }
 
 textarea {
-    padding: 20px;
+    width: 75%;
+    margin: 0 auto;
+
+    /* padding: 20px;
     margin-left: 20rem;
     margin-right: 5rem;
     margin-bottom: 5rem;
-    margin-top: 5rem;
+    margin-top: 5rem; */
     
 }
 

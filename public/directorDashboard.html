@@ -13,8 +13,6 @@
 </head>
 
 <body>
-
-
   <nav>
     <ul class="sidenav">
       <li>
@@ -22,21 +20,23 @@
       </li>
       <h4>Productions</h4>
       <div class="productionList">
-        <a href="./createNewProduction.html" class="button">Create New Production</a>
+        <a href="./createNewProduction.html" class="newProductionButton">Create New Production</a>
         <div id="productionName"></div>
-          
+      </div>
     </ul>
-
   </nav>
-
-  <h1>Hello Director!</h1>
-  <div id="messageRecipient"></div>
-  <textarea rows="4" cols="50"></textarea><br>
-  
-  <form id="sendBtn">
-    <input type="submit" value="Submit">
-  </form>
-	
+  <div class="content">
+    <h1>Hello Director!</h1>  
+    <form id="msgform">
+      <label for="production">Production</label>
+      <input id="production" type="text" readonly></br>
+      <label for="actor">Actor</label>
+      <input id="actor" type="text" readonly></br>
+      <label for="notes">Notes</label>
+      <textarea id="notes" rows="4" cols="50"></textarea><br>
+      <button type="submit" value="Submit">Submit</button>
+    </form>
+  </div>
 </body>
 
 </html>

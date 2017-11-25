@@ -1,9 +1,9 @@
 
-url = "http://localhost:9000/productions";
+baseUrl = "http://localhost:9000/";
 
 
 
-$.getJSON(url, function(data) {
+let displayDropdownProductions = (data) => {
     let html = "";
     for (var i = 0; i < data.productions.length; i++) {
       html += 
@@ -21,11 +21,19 @@ $.getJSON(url, function(data) {
 
     $('#productionName').html(html);
     
-});
+};
 
 function handleActorSelect(name) {
   $("textarea").text("To " + name);
 };
+
+$.ajax ({
+  url: baseUrl + "productions",
+  type: "GET",
+  dataType: "json",
+  success: displayDropdownProductions,
+  // error: displayError
+}); 
 
 // add function to handle message submit button
 

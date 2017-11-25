@@ -41,7 +41,7 @@ app.get('/note', function(req, res) {
         }
 
     }
-    res.send(JSON.stringify({notesArray}));
+    res.send(notesArray);
 });
 
 app.get('/productions', function(req, res) {
@@ -116,6 +116,39 @@ var notes = [
         "publishedAt": 147001697669,
         "readStatus": true
     },
+    {
+        "id": "237549",
+        "text": "Jump higher",
+        "directorId": "hijklmn",
+        "directorName": "Paul Finocchiaro",
+        "actorId": "aaaaaa",
+        "actorName": "Dev Patel",
+        "productionId":"222222",
+        "publishedAt": 147001697669,
+        "readStatus": true
+    },
+    {
+        "id": "102938",
+        "text": "Move faster from point A to point B",
+        "directorId": "hijklmn",
+        "directorName": "Paul Finocchiaro",
+        "actorId": "aaaaaa",
+        "actorName": "Dev Patel",
+        "productionId":"222222",
+        "publishedAt": 147001697669,
+        "readStatus": true
+    },
+    {
+        "id": "564738",
+        "text": "Think Greek",
+        "directorId": "abcdefg",
+        "directorName": "Steven Speilberg",
+        "actorId": "aaaaaa",
+        "actorName": "Dev Patel",
+        "productionId":"333333",
+        "publishedAt": 147001697669,
+        "readStatus": true
+    }
 ];
 
 var users = [

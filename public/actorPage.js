@@ -41,19 +41,19 @@ function displayNotes(productionId){
         url: baseUrl + "/note",
         method: "GET",
         data: { id : productionId },
-        dataType: "html"
+        dataType: "json"
     });
-    request.done(function( msg ) {
-       console.log(msg)
+    request.done(function (notesArray) {
+        let html = "";
+         for (i in notesArray) {
+           console.log( notesArray[i])
+            html += 
+                  `<h1>`+ notesArray[i] + `\n </h1>`;  
+        }
+        $('#notesDisplay').html(html);
     });
 
-    // let html = "";
-    // // you need a get request here
-    // for (var i = 0; i < notesArray.length; i++) {
-    //     html += 
-    //           `<h1>`+ notesArray[i]+ `</h1`;  
-    // }
-    // $('#notesDisplay').html(html);
+   
 };
 
 let displayError = (error) => {

@@ -25,18 +25,35 @@ let displayProductions = (data) => {
 //     $("notesDisplay").text();
 //   };
 
-$("button").click(function() {
-    $.ajax ({
-        url: baseUrl + "/note?id="+productionId,
-        type: "GET",
-        dataType: "json",
-        success: displayNotes,
-        error: displayError
-    });    
-});
+// $("button").click(function() {
+//     $.ajax({
+//         url: "test.html",
+//         context: document.body,
+//         success: function(){
+//           $(this).addClass("done");
+//         }
+//     });  
+// });
 
 function displayNotes(productionId){
-    console.log(productionId);
+   // console.log(productionId);
+    var request = $.ajax({
+        url: baseUrl + "/note",
+        method: "GET",
+        data: { id : productionId },
+        dataType: "html"
+    });
+    request.done(function( msg ) {
+       console.log(msg)
+    });
+
+    // let html = "";
+    // // you need a get request here
+    // for (var i = 0; i < notesArray.length; i++) {
+    //     html += 
+    //           `<h1>`+ notesArray[i]+ `</h1`;  
+    // }
+    // $('#notesDisplay').html(html);
 };
 
 let displayError = (error) => {
@@ -52,11 +69,11 @@ $.ajax ({
     error: displayError
 });
  
-$.ajax ({
-    url: baseUrl + "/notes",
-    type: "GET",
-    dataType: "json",
-    success: displayNotes,
-    error: displayError
-});
+// $.ajax ({
+//     url: baseUrl + "/notes",
+//     type: "GET",
+//     dataType: "json",
+//     success: displayNotes,
+//     error: displayError
+// });
 

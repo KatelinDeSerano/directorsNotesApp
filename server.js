@@ -115,7 +115,7 @@ var notes = [
         "productionId":"111111",
         "publishedAt": 147001697669,
         "readStatus": true
-    }
+    },
 ];
 
 var users = [

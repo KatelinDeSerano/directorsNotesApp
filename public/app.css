@@ -68,25 +68,7 @@ div.content {
     height: 1000px;
 }
 
-@media screen and (max-width: 900px) {
-    ul.sidenav {
-        width: 100%;
-        height: auto;
-        position: relative;
-    }
-    ul.sidenav li a {
-        float: left;
-        padding: 15px;
-    }
-    div.content {margin-left: 0;}
-}
 
-@media screen and (max-width: 400px) {
-    ul.sidenav li a {
-        text-align: center;
-        float: none;
-    }
-}
 
 .dropbtn {
     background-color: white;
@@ -187,9 +169,15 @@ textarea {
 }
 
 .signUp {
-    border: 1px solid black;
-    margin-left: 30%;
-    margin-right: 30%;
+    border: 1px solid grey;
+    margin: 50px auto;
+    width: 40%;
+    padding: 30px;
+    box-shadow: 5px 5px 10px #C3BAAA;
+}
+
+.signUp input {
+    margin-bottom: 10px;
 }
 
 #sendBtn {
@@ -208,4 +196,31 @@ textarea {
     background-color: white;
     box-shadow: 5px 5px 10px #C3BAAA;
     color: #3C4042;
+}
+
+@media screen and (max-width: 900px) {
+    /* ul.sidenav li a {
+        text-align: center;
+        float: none;
+    } */
+    nav {
+        width: 40%;
+    }
+    .content {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    /* ul.sidenav li a {
+        text-align: center;
+        float: none;
+    } */
+    nav {
+        width: 100%;
+        height: auto;
+    }
+    .content {
+        width: 100%;
+    }
 }

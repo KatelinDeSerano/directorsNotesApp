@@ -50,15 +50,14 @@ router.delete('/:id', (req, res) => {
       });
   });
 
-  router.put('/:id', (req, res) => {
+  router.put('/:id', jsonParser, (req, res) => {
     if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
       res.status(400).json({
         error: 'Request path id and request body id values must match'
       });
     }
-  
     const updated = {};
-    const updateableFields = ('text');
+    const updateableFields = ['text'];
     updateableFields.forEach(field => {
       if (field in req.body) {
         updated[field] = req.body[field];
@@ -67,7 +66,7 @@ router.delete('/:id', (req, res) => {
   
     Notes
       .findByIdAndUpdate(req.params.id, { $set: updated }, { new: true })
-      .then(updatedPost => res.status(204).end())
+      .then(updatedPost => res.status(200).json(updatedPost))
       .catch(err => res.status(500).json({ message: 'Something went wrong' }));
   });
 

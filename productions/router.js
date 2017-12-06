@@ -1,10 +1,13 @@
 'use strict';
 const express = require('express');
 const passport = require('passport');
-const bodyParser = require('bodyParser');
+const bodyParser = require('body-parser');
 const {Productions} = require('./models');
 
-app.get('/', (req, res) => {
+
+const router = express.Router();
+
+router.get('/', (req, res) => {
     Productions
       .findById(req.params.id)
       .then(post => res.json(post.apiRepr()))
@@ -14,7 +17,7 @@ app.get('/', (req, res) => {
       });
   });
 
-  app.post('/', (req, res) => {
+router.post('/', (req, res) => {
     const requiredFields = ['productionName', 'actors'];
     for (let i = 0; i < requiredFields.length; i++) {
       const field = requiredFields[i];
@@ -24,8 +27,6 @@ app.get('/', (req, res) => {
         return res.status(400).send(message);
       }
     }
- 
-
   Productions
     .create({
       productionName: req.body.productionName,
@@ -39,7 +40,7 @@ app.get('/', (req, res) => {
     });
 });
 
-app.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     Productions
       .findByIdAndRemove(req.params.id)
       .then(() => {
@@ -47,3 +48,5 @@ app.delete('/:id', (req, res) => {
         res.status(204).end();
       });
   });
+
+module.exports = {router};

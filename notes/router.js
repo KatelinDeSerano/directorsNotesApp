@@ -1,11 +1,13 @@
 'use strict';
 const express = require('express');
 const passport = require('passport');
-const bodyParser = require('bodyParser');
+const bodyParser = require('body-parser');
 const {Notes} = require('./models');
 
+const router = express.Router();
+const jsonParser = bodyParser.json();
 
-app.get('/', function(req, res) {
+router.get('/', function(req, res) {
     Notes
     .find()
     .exec()
@@ -17,7 +19,7 @@ app.get('/', function(req, res) {
     })
 });
 
-app.post('/notes', jsonParser, (req,res) => { 
+router.post('/', jsonParser,(req,res) => { 
  const requiredFields = ['actorName', 'text'];
  for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
@@ -27,11 +29,16 @@ app.post('/notes', jsonParser, (req,res) => {
         return res.status(400).send(message);
         }
     }
-    const note = Note.create(req.body.actorName, req.body.text);
-    res.status(201).json(note);
-})
+    Notes.create(req.body)
+    .then(note => {
+        res.status(201).json(note);
+    })
+    .catch(err => {
+        res.status(500).json({message:"internal server error"});
+    })
+});
 
-app.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
     Notes
       .findByIdAndRemove(req.params.id)
       .then(() => {
@@ -43,7 +50,7 @@ app.delete('/:id', (req, res) => {
       });
   });
 
-  app.put('/:id', (req, res) => {
+  router.put('/:id', (req, res) => {
     if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
       res.status(400).json({
         error: 'Request path id and request body id values must match'
@@ -63,3 +70,5 @@ app.delete('/:id', (req, res) => {
       .then(updatedPost => res.status(204).end())
       .catch(err => res.status(500).json({ message: 'Something went wrong' }));
   });
+
+module.exports = {router};

@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const passport = require('passport');
 const { router: usersRouter } = require('./users');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
+const { router: notesRouter } = require('./notes');
 
 mongoose.Promise = global.Promise;
 
@@ -30,54 +31,7 @@ passport.use(jwtStrategy);
 
 app.use('/users/', usersRouter);
 app.use('/auth/', authRouter);
-
-app.get('/', function(req, res) {
-    res.send('index');
-});
-
-app.get('/users', function(req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify({ users: users}));
-});
-
-
-app.get('/notes', function(req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify({ notes: notes}));
-});
-
-app.get('/note', function(req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    let notesArray = [];
-    let productionId = req.query.id;
-    for (let i=0; i<notes.length; i++) {
-        if (productionId===notes[i].productionId && notes[i].actorId==="aaaaaa") {
-            notesArray.push(notes[i].text);
-        }
-
-    }
-    res.send(notesArray);
-});
-
-app.get('/productions', function(req, res) {
-    res.setHeader('Content-Type', 'application/json'); 
-    res.send(JSON.stringify({ productions: productions}));
-});
-
-app.post('/notes', jsonParser, (req,res) => { 
- const requiredFields = ['actorName', 'text'];
- for (let i=0; i<requiredFields.length; i++) {
-    const field = requiredFields[i];
-        if (!(field in req.body)) {
-        const message = `Missing \`${field}\` in request body`
-        console.error(message);
-        return res.status(400).send(message);
-        }
-    }
-    const note = Note.create(req.body.actorName, req.body.text);
-    res.status(201).json(note);
-})
-
+app.use('/notes/', notesRouter);
 
 // Referenced by both runServer and closeServer. closeServer
 // assumes runServer has run and set `server` to a server object

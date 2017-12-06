@@ -8,15 +8,27 @@ const NotesSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  director: {
+  directorId: {
     type: String,
     required: true,
   },
-  actor: {
+  actorId: {
     type: String,
     required: true,
   },
-  production: {
+  productionId: {
+      type: String,
+      required: true
+  },
+  directorName: {
+    type: String,
+    required: true,
+  },
+  actorName: {
+    type: String,
+    required: true,
+  },
+  productionName: {
       type: String,
       required: true
   },
@@ -28,7 +40,7 @@ const NotesSchema = mongoose.Schema({
       default: Date.now
   }
 });
-// may need this later? 
+// may need this later? Alter to specify which feilds to return
 // NotesSchema.methods.apiRepr = function() {
 //   return {
 //     username: this.username || '',
@@ -40,15 +52,3 @@ const NotesSchema = mongoose.Schema({
 const Notes = mongoose.model('Notes', NotesSchema);
 
 module.exports = {Notes};
-
-// {
-//     "id": "123456",
-//     "text": "You suck, do better",
-//     "directorId": "abcdefg",
-//     "directorName": "Steven Speilberg",
-//     "actorId": "aaaaaa",
-//     "actorName": "Dev Patel",
-//     "productionId":"111111",
-//     "publishedAt": 147001697669,
-//     "readStatus": false
-// },

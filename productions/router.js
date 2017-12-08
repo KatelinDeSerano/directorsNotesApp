@@ -6,6 +6,7 @@ const {Productions} = require('./models');
 
 
 const router = express.Router();
+const jsonParser = bodyParser.json();
 
 router.get('/', (req, res) => {
     Productions
@@ -17,7 +18,7 @@ router.get('/', (req, res) => {
       });
   });
 
-router.post('/', (req, res) => {
+router.post('/', jsonParser, (req, res) => {
     const requiredFields = ['productionName', 'actors'];
     for (let i = 0; i < requiredFields.length; i++) {
       const field = requiredFields[i];
@@ -27,17 +28,14 @@ router.post('/', (req, res) => {
         return res.status(400).send(message);
       }
     }
-  Productions
-    .create({
-      productionName: req.body.productionName,
-      directorName: req.body.directorName,
-      actors: req.body.actors
+  Productions.create(req.body)
+    .then(production => {
+      res.status(201).json(production);
     })
-    .then(productions => res.status(201).json(productions.apiRepr()))
     .catch(err => {
       console.error(err);
       res.status(500).json({ error: 'Something went wrong' });
-    });
+    })
 });
 
 router.delete('/:id', (req, res) => {

@@ -10,12 +10,14 @@ const jsonParser = bodyParser.json();
 
 router.get('/', (req, res) => {
     Productions
-      .findById(req.params.id)
-      .then(post => res.json(post.apiRepr()))
-      .catch(err => {
-        console.error(err);
-        res.status(500).json({ error: 'something went wrong' });
-      });
+    .find()
+    .exec()
+    .then(productions => {
+      res.status(200).json(productions);
+    })
+    .catch(err => {
+      res.status(500).json({message: 'something went wrong'});
+    })
   });
 
 router.post('/', jsonParser, (req, res) => {

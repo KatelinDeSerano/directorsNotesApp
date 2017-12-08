@@ -33,8 +33,7 @@ router.post('/', jsonParser, (req, res) => {
       res.status(201).json(production);
     })
     .catch(err => {
-      console.error(err);
-      res.status(500).json({ error: 'Something went wrong' });
+      res.status(500).json({message: 'Something went wrong' });
     })
 });
 

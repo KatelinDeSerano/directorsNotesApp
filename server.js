@@ -7,6 +7,7 @@ const passport = require('passport');
 const { router: usersRouter } = require('./users');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 const { router: notesRouter } = require('./notes');
+const { router: productionsRouter } = require('./productions');
 
 mongoose.Promise = global.Promise;
 
@@ -32,6 +33,7 @@ passport.use(jwtStrategy);
 app.use('/users/', usersRouter);
 app.use('/auth/', authRouter);
 app.use('/notes/', notesRouter);
+app.use('/productions', productionsRouter);
 
 // Referenced by both runServer and closeServer. closeServer
 // assumes runServer has run and set `server` to a server object

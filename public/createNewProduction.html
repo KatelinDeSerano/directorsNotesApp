@@ -1,5 +1,5 @@
 
-<!-- write new html for creating a production -->
+
 
 <!DOCTYPE html>
 <html>
@@ -8,13 +8,20 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>Director's Dashboard</title>  
-        <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script> -->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
         <link href="app.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <h1>Create New Production Form Here</h1>
-             <!-- Add form, with inputs for Name, and Actors -->
+        <h1>Create New Production</h1>
+        <form id="newProduction">
+            Production Name<br>
+            <input type="text" id="productionName"><br>
+            Actors<br>
+            <input type="text" id="actorName"><br>
+            <button type="button" id="addActor">Add Actor</button>
+            <button type="submit">Submit</button>
+        </form> 
              <!-- Actor's name input should behave so that 
                 we can click a button to add another input line -->
     </body>

@@ -1,7 +1,9 @@
 $("#signUp").submit(e => {
     e.preventDefault();
-    let username = $("#username").val();
+    let firstName = $("#firstName").val();
+    let lastName = $("#lastName").val();
     let password = $("#password").val();
+    let username = firstName + lastName;
     let user = {username, password};
     let settings = {
         url: "/users",
@@ -12,11 +14,10 @@ $("#signUp").submit(e => {
             console.log(data);
         },
         error: function(err) {
-            console.log(err);
+            console.log(err.responseJSON.message);
         }
     }
     $.ajax(settings);
 })
 
 
-// add first name and last name field

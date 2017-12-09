@@ -1,7 +1,9 @@
 $("#login").submit(e => {
     e.preventDefault();
-    let username = $("#username").val();
+    let firstName = $("#firstName").val();
+    let lastName = $("#lastName").val();
     let password = $("#password").val();
+    let username = firstName + lastName;
     let user = {username, password};
     let settings = {
         url: "/auth/login",
@@ -13,7 +15,7 @@ $("#login").submit(e => {
             localStorage.setItem("authToken", data.authToken)
         },
         error: function(err) {
-            console.log(err);
+            console.log(err.responseJSON.message);
         }
     }
     $.ajax(settings);

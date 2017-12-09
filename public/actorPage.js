@@ -12,7 +12,6 @@ let displayProductions = (data) => {
 };
 
 function displayNotes(productionId){
-   
     var request = $.ajax({
         url: baseUrl + "/note",
         method: "GET",

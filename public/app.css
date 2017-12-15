@@ -87,6 +87,11 @@ div.content {
     background-color: #64A6BD;
 }
 
+#newProduction {
+    margin-left: 45%;
+    margin-right: 45%;
+}
+
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
     display: none;

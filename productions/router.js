@@ -7,8 +7,11 @@ const {Productions} = require('./models');
 
 const router = express.Router();
 const jsonParser = bodyParser.json();
+router.use(jsonParser);
 
-router.get('/', (req, res) => {
+const jwtAuth = passport.authenticate('jwt', { session: false });
+
+router.get('/', jwtAuth, (req, res) => {
     Productions
     .find()
     .exec()
@@ -20,7 +23,7 @@ router.get('/', (req, res) => {
     })
   });
 
-router.post('/', jsonParser, (req, res) => {
+router.post('/', jwtAuth, (req, res) => {
     const requiredFields = ['productionName', 'actors'];
     for (let i = 0; i < requiredFields.length; i++) {
       const field = requiredFields[i];
@@ -39,7 +42,7 @@ router.post('/', jsonParser, (req, res) => {
     })
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', jwtAuth, (req, res) => {
     Productions
       .findByIdAndRemove(req.params.id)
       .then(() => {

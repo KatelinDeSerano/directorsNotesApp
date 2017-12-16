@@ -2,9 +2,10 @@ $("#signUp").submit(e => {
     e.preventDefault();
     let firstName = $("#firstName").val();
     let lastName = $("#lastName").val();
+    let username = $("#username").val();
     let password = $("#password").val();
-    let username = firstName + lastName;
-    let user = {username, password};
+    let user = {firstName, lastName, username, password};
+    
     let settings = {
         url: "/users",
         type: "POST",
@@ -19,5 +20,11 @@ $("#signUp").submit(e => {
     }
     $.ajax(settings);
 })
+
+
+
+
+
+
 
 

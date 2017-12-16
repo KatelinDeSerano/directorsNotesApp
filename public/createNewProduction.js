@@ -1,25 +1,34 @@
+let actors = [];
+
 $("#addActor").click(e => {
     e.preventDefault();
-    let actorInput = `<input type="text" id="actorName"><br>`
-    $("#actorName").after(actorInput);
+    let newActor = $("#actorName").val();
+    $("#actorName").val("");
+    actors.push(newActor);
+    $("#actorName").before(newActor);
 })
 
 $("#newProduction").submit(e => {
     e.preventDefault();
-    let ProductiontName = $("#productionName").val();
-    let actorName = $("#actorName").val();
-    
+    let productionName = $("#productionName").val();
+    let production = {
+        productionName: productionName,
+        actors: actors
+    }
+    const authToken = localStorage.getItem('authToken');
     let settings = {
-        url: "/productions/productions",
+        url: "/productions",
         type: "POST",
         contentType: "application/json",
-        // modify to stringify array of actorNames
-        // data: JSON.stringify(user),
+        headers: { 
+            Authorization: `Bearer ${authToken}` 
+        },
+        data: JSON.stringify(production),
         success: function(data) {
             console.log(data);
         },
         error: function(err) {
-            console.log(err.responseJSON.message);
+            console.log(err);
         }
     }
     $.ajax(settings);

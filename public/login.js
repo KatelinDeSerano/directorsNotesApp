@@ -1,9 +1,8 @@
 $("#login").submit(e => {
     e.preventDefault();
-    let firstName = $("#firstName").val();
-    let lastName = $("#lastName").val();
+
+    let username = $("#username").val();
     let password = $("#password").val();
-    let username = firstName + lastName;
     let user = {username, password};
     let settings = {
         url: "/auth/login",

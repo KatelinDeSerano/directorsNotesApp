@@ -11,10 +11,12 @@ $("#login").submit(e => {
         data: JSON.stringify(user),
         success: function(data) {
             console.log(data);
-            localStorage.setItem("authToken", data.authToken)
+            localStorage.setItem("authToken", data.authToken);
+            localStorage.setItem("currentUser", username);
+            localStorage.setItem("userType", data.userType);            
         },
         error: function(err) {
-            console.log(err.responseJSON.message);
+            console.log(err);
         }
     }
     $.ajax(settings);

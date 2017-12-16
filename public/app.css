@@ -1,5 +1,6 @@
 body {
-    margin: 0;
+    margin: 10px;
+    padding-left: 20px;
     background-color: #f7f8f9;
     font-family: sans-serif;
 }

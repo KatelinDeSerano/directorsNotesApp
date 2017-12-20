@@ -26,10 +26,10 @@ router.post('/login', localAuth, (req, res) => {
       userType = user.userType;
       console.log(user);
       res.json({
-        stuff: "Hello",
-        userType: user.userType,     
+        userType: user[0].userType,     
         authToken: authToken
       });
+
     }); 
 });
 

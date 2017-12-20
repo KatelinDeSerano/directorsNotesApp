@@ -15,6 +15,8 @@ $("#signUp").submit(e => {
         data: JSON.stringify(user),
         success: function(data) {
             console.log(data);
+            console.log("loggin");
+            message("You have successfully signed up");
         },
         error: function(err) {
             console.log(err.responseJSON.message);

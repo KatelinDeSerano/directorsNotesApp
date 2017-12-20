@@ -15,6 +15,10 @@ $("#login").submit(e => {
             localStorage.setItem("currentUser", username);
             localStorage.setItem("userType", data.userType);            
         },
+        // conditional statement--if a userType is "actor"
+        // route to actor dashboard
+        // if userType is director
+        // route to director dashboard
         error: function(err) {
             console.log(err);
         }

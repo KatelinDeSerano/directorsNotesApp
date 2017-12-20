@@ -4,22 +4,14 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const ProductionsSchema = mongoose.Schema({
-    // productionId: {
-    //     type: String,
-    //     required: true
-    // },
     productionName: {
         type: String,
         required: true
     },
-    // directorId: {
-    //     type: String,
-    //     required: true
-    // },
-    // directorName: {
-    //     type: String,
-    //     required: true
-    // },
+    director: {
+        type: String,
+        required: true
+    },
     actors:{
         type: Array,
         required: true

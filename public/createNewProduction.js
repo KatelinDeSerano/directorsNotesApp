@@ -11,7 +11,9 @@ $("#addActor").click(e => {
 $("#newProduction").submit(e => {
     e.preventDefault();
     let productionName = $("#productionName").val();
+    let director = localStorage.getItem("currentUser");
     let production = {
+        director: director,
         productionName: productionName,
         actors: actors
     }

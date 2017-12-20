@@ -11,9 +11,9 @@ router.use(jsonParser);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
-router.get('/', jwtAuth, (req, res) => {
+router.get('/:user', jwtAuth, (req, res) => {
     Productions
-    .find()
+    .find({director:req.params.user})
     .exec()
     .then(productions => {
       res.status(200).json(productions);
@@ -24,7 +24,7 @@ router.get('/', jwtAuth, (req, res) => {
   });
 
 router.post('/', jwtAuth, (req, res) => {
-    const requiredFields = ['productionName', 'actors'];
+    const requiredFields = ['productionName', 'actors', 'director'];
     for (let i = 0; i < requiredFields.length; i++) {
       const field = requiredFields[i];
       if (!(field in req.body)) {

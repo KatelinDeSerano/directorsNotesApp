@@ -1,19 +1,19 @@
 
-baseUrl = "http://localhost:9000/";
+baseUrl = "http://localhost:8080/";
 
 
 
-let displayDropdownProductions = (data) => {
+let displayDropdownProductions = (productions) => {
     let html = "";
-    for (var i = 0; i < data.productions.length; i++) {
+    for (var i = 0; i < productions.length; i++) {
       html += 
             `<div class="dropdown">
-            <button class="dropbtn">`+ data.productions[i].productionName + `</button>
+            <button class="dropbtn">`+ productions[i].productionName + `</button>
             <div class="dropdown-content">`;
         
-      for (var j = 0; j < data.productions[i].actors.length; j++) {
-        var selectActor = data.productions[i].actors[j];
-        var selectProduction = data.productions[i].productionName;
+      for (var j = 0; j < productions[i].actors.length; j++) {
+        var selectActor = productions[i].actors[j];
+        var selectProduction = productions[i].productionName;
         html += `<a id="actorList" onclick="handleActorSelect('${selectActor}', '${selectProduction}')">${selectActor}</a>`;
       }
       html += `</div>
@@ -29,11 +29,17 @@ function handleActorSelect(name, production) {
   $("#production").val(production);
 };
 
+let token = localStorage.getItem("authToken");
+let user = localStorage.getItem("currentUser");
+
 $.ajax ({
-  url: baseUrl + "productions",
+  url: baseUrl + "productions/" + user,
   type: "GET",
   dataType: "json",
-  success: displayDropdownProductions,
+  headers: {
+    Authorization: `Bearer ${token}`
+  },
+  success: displayDropdownProductions
   // error: displayError
 }); 
 

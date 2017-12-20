@@ -14,9 +14,8 @@ $("#signUp").submit(e => {
         contentType: "application/json",
         data: JSON.stringify(user),
         success: function(data) {
-            console.log(data);
-            console.log("loggin");
-            message("You have successfully signed up");
+            // add message saying user was successfully signed up 
+            window.location.replace("./login.html");
         },
         error: function(err) {
             console.log(err.responseJSON.message);

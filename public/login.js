@@ -10,10 +10,17 @@ $("#login").submit(e => {
         contentType: "application/json",
         data: JSON.stringify(user),
         success: function(data) {
-            console.log(data);
             localStorage.setItem("authToken", data.authToken);
             localStorage.setItem("currentUser", username);
-            localStorage.setItem("userType", data.userType);            
+            localStorage.setItem("userType", data.userType);
+            
+            if (data.userType === "director") {
+                window.location.replace("./directorDashboard.html");
+                    
+                 
+            }  else if(data.userType === "actor"){
+                window.location.replace("./actorDashboard.html");
+            }
         },
         // conditional statement--if a userType is "actor"
         // route to actor dashboard

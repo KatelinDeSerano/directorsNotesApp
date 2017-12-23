@@ -8,33 +8,21 @@ const NotesSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  directorId: {
+  director: {
     type: String,
     required: true,
   },
-  actorId: {
+  actor: {
     type: String,
     required: true,
   },
-  productionId: {
+  production: {
       type: String,
       required: true
   },
-  directorName: {
-    type: String,
-    required: true,
-  },
-  actorName: {
-    type: String,
-    required: true,
-  },
-  productionName: {
-      type: String,
-      required: true
-  },
-  readStatus: {
-      type: Boolean
-  },
+  // readStatus: {
+  //     type: Boolean
+  // },
   created: {
       type: Date,
       default: Date.now

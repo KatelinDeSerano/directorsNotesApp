@@ -11,7 +11,7 @@ router.use(jsonParser);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
-router.get('/:user', jwtAuth, (req, res) => {
+router.get('/director/:user', jwtAuth, (req, res) => {
     Productions
     .find({director:req.params.user})
     .exec()
@@ -20,6 +20,18 @@ router.get('/:user', jwtAuth, (req, res) => {
     })
     .catch(err => {
       res.status(500).json({message: 'something went wrong'});
+    })
+  });
+
+router.get('/actor/:user', jwtAuth, (req, res) => {
+    Productions
+    .find({actors:req.params.user})
+    .exec()
+    .then(productions => {
+      res.status(200).json(productions);
+    })
+    .catch(err => {
+      res.status(500).json(err);
     })
   });
 

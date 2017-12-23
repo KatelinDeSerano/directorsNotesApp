@@ -9,7 +9,7 @@ const jsonParser = bodyParser.json();
 
 router.get('/', function(req, res) {
     Notes
-    .find()
+    .find({_id: req.params.id})
     .exec()
     .then(notes => {
         res.status(200).json(notes);
@@ -20,7 +20,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', jsonParser,(req,res) => { 
- const requiredFields = ['actorName', 'text'];
+ const requiredFields = ['director', 'production','actor', 'text'];
  for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
         if (!(field in req.body)) {

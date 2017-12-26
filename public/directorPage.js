@@ -8,13 +8,15 @@ let displayDropdownProductions = (productions) => {
     for (var i = 0; i < productions.length; i++) {
       html += 
             `<div class="dropdown">
-            <button class="dropbtn">`+ productions[i].productionName + `</button>
+            <button class="dropbtn"> ${productions[i].productionName} </button>
             <div class="dropdown-content">`;
         
       for (var j = 0; j < productions[i].actors.length; j++) {
         var selectActor = productions[i].actors[j];
         var selectProduction = productions[i].productionName;
-        html += `<a id="actorList" onclick="handleActorSelect('${selectActor}', '${selectProduction}')">${selectActor}</a>`;
+        var id = productions[i]._id;
+        html += `<a data="${id}" id="actorList" 
+        onclick="handleActorSelect('${selectActor}', '${selectProduction}', '${id}')">${selectActor}</a>`;
       }
       html += `</div>
                </div>`;
@@ -24,9 +26,10 @@ let displayDropdownProductions = (productions) => {
     
 };
 
-function handleActorSelect(name, production) {
+function handleActorSelect(name, production, id) {
   $("#actor").val(name);
   $("#production").val(production);
+  $("#productionId").val(id);
 };
 
 let token = localStorage.getItem("authToken");
@@ -42,20 +45,21 @@ $.ajax ({
   success: displayDropdownProductions
   // error: displayError
 }); 
-console.log("test");
+
 // TODO: add function to handle message submit button
 $("#msgform").submit(e => {
   e.preventDefault();
-  debugger
   let production = $("#production").val();
   let actor = $("#actor").val();
   let text = $("#msg").val();
+  let id = $("#productionId").val();
   let director = localStorage.getItem("currentUser");
   let notes = {
       director: director,
       production: production,
       actor: actor,
-      text: text
+      text: text,
+      productionId: id
   }
   const authToken = localStorage.getItem('authToken');
   let settings = {
@@ -68,6 +72,7 @@ $("#msgform").submit(e => {
       data: JSON.stringify(notes),
       success: function(data) {
           console.log(data);
+          $('#msgform').trigger("reset"); 
       },
       error: function(err) {
           console.log(err);

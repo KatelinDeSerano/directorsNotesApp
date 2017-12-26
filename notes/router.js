@@ -9,7 +9,7 @@ const jsonParser = bodyParser.json();
 
 router.get('/', function(req, res) {
     Notes
-    .find({_id: req.params.id})
+    .find({user: req.params.user})
     .exec()
     .then(notes => {
         res.status(200).json(notes);

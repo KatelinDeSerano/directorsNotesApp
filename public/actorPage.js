@@ -6,29 +6,34 @@ let displayProductions = (productions) => {
     
     let html = "";
     for (var i = 0; i < productions.length; i++) {
+        var actorproductionId = productions[i]._id;
         html += 
-              `<button class="dropbtn" id="productionBtn" 
-              onclick="displayNotes('${productions[i]._id}')">`+ 
+              `<button class="dropbtn" id="productionBtn" value="${actorproductionId}" data="${actorproductionId}"
+              onclick="displayNotes('${actorproductionId}')">`+ 
               productions[i].productionName + `</button>`;  
     }
     $('#productionName').html(html);
 };
 
-function displayNotes(productionId){
-   
+function displayNotes(currentUser, actorproductionId){
+    // notes need to be filtered by productionId and actor
     var request = $.ajax({
         url: baseUrl + "/notes",
         method: "GET",
-        data: { id : productionId },
+        data: { user : currentUser},
         dataType: "json"
     });
     request.done(function (notes) {
         let html = "";
-         for (i in notes) {
-           console.log( notes[i].text)
+         for (var i=0; i < notes.length; i++) {
+             console.log(user);
+           if (notes[i].actor === user && notes[i].productionId === actorproductionId) {
             html += 
                   `<div class="noteSnippet">
-                  <h3>"`+ notes[i].text + `" \n </h3></div>`;  
+                  <h3>"`+ notes[i].text + `" \n </h3></div>`;
+            } else {
+                notes[i]++;
+            }
         }
         $('#notesDisplay').html(html);
     });

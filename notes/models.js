@@ -17,15 +17,19 @@ const NotesSchema = mongoose.Schema({
     required: true,
   },
   production: {
-      type: String,
-      required: true
+    type: String,
+    required: true
+  },
+  productionId: {
+    type: String,
+    required: true,
   },
   // readStatus: {
   //     type: Boolean
   // },
   created: {
-      type: Date,
-      default: Date.now
+    type: Date,
+    default: Date.now
   }
 });
 // may need this later? Alter to specify which feilds to return

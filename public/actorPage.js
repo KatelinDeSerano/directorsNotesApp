@@ -6,28 +6,30 @@ let displayProductions = (productions) => {
     
     let html = "";
     for (var i = 0; i < productions.length; i++) {
-        var selectproductionId = productions[i]._id;
+        var selectProductionId = productions[i]._id;
         html += 
-              `<button class="dropbtn" id="productionBtn" value="${selectproductionId}" data="${selectproductionId}"
-              onclick="displayNotes('${selectproductionId}')">`+ 
+              `<button class="dropbtn" id="productionBtn" value="${selectProductionId}" data="${selectProductionId}"
+              onclick="displayNotes('${selectProductionId}')">`+ 
               productions[i].productionName + `</button>`;  
     }
     $('#productionName').html(html);
 };
 
-function displayNotes(selectproductionId){
+function displayNotes(selectProductionId){
     let user = localStorage.getItem("currentUser");
     var request = $.ajax({
         url: baseUrl + "/notes",
         method: "GET",
-        data: { user : user},
-        dataType: "json"
+        data: { actor : user,
+                productionId : selectProductionId
+        },
+        contentType: "application/json"
     });
     request.done(function (notes) {
         let html = "";
         debugger
         for (var i=0; i < notes.length; i++) {
-            if (notes[i].productionId === selectproductionId && notes[i].actor === user) {
+            if (notes[i].productionId === selectProductionId && notes[i].actor === user) {
                 html += 
                     `<div class="noteSnippet">
                     <h3>"`+ notes[i].text + `" \n </h3></div>`;

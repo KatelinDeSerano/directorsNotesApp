@@ -7,9 +7,12 @@ const {Notes} = require('./models');
 const router = express.Router();
 const jsonParser = bodyParser.json();
 
+// add authentication 
+
 router.get('/', function(req, res) {
+  console.log(req.query.actor);
     Notes
-    .find({user: req.params.user})
+    .find({actor: req.query.actor, productionId: req.query.productionId})
     .exec()
     .then(notes => {
         res.status(200).json(notes);

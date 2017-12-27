@@ -15,7 +15,7 @@ const ProductionsSchema = mongoose.Schema({
     actors:{
         type: Array,
         required: true
-    }
+    },
 });
 // may need this later? Alter to specify which feilds to return
 // ProductionSchema.methods.apiRepr = function() {

@@ -6,31 +6,31 @@ let displayProductions = (productions) => {
     
     let html = "";
     for (var i = 0; i < productions.length; i++) {
-        var actorproductionId = productions[i]._id;
+        var selectproductionId = productions[i]._id;
         html += 
-              `<button class="dropbtn" id="productionBtn" value="${actorproductionId}" data="${actorproductionId}"
-              onclick="displayNotes('${actorproductionId}')">`+ 
+              `<button class="dropbtn" id="productionBtn" value="${selectproductionId}" data="${selectproductionId}"
+              onclick="displayNotes('${selectproductionId}')">`+ 
               productions[i].productionName + `</button>`;  
     }
     $('#productionName').html(html);
 };
 
-function displayNotes(currentUser, actorproductionId){
-    // notes need to be filtered by productionId and actor
+function displayNotes(selectproductionId){
+    let user = localStorage.getItem("currentUser");
     var request = $.ajax({
         url: baseUrl + "/notes",
         method: "GET",
-        data: { user : currentUser},
+        data: { user : user},
         dataType: "json"
     });
     request.done(function (notes) {
         let html = "";
-         for (var i=0; i < notes.length; i++) {
-             console.log(user);
-           if (notes[i].actor === user && notes[i].productionId === actorproductionId) {
-            html += 
-                  `<div class="noteSnippet">
-                  <h3>"`+ notes[i].text + `" \n </h3></div>`;
+        debugger
+        for (var i=0; i < notes.length; i++) {
+            if (notes[i].productionId === selectproductionId && notes[i].actor === user) {
+                html += 
+                    `<div class="noteSnippet">
+                    <h3>"`+ notes[i].text + `" \n </h3></div>`;
             } else {
                 notes[i]++;
             }

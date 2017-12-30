@@ -1,7 +1,7 @@
 $("#login").submit(e => {
     e.preventDefault();
 
-    let username = $("#username").val();
+    let username = $("#email").val();
     let password = $("#password").val();
     let user = {username, password};
     let settings = {

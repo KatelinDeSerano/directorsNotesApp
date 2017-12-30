@@ -27,12 +27,14 @@ function displayNotes(selectProductionId){
     });
     request.done(function (notes) {
         let html = "";
-        debugger
+        
         for (var i=0; i < notes.length; i++) {
             if (notes[i].productionId === selectProductionId && notes[i].actor === user) {
                 html += 
                     `<div class="noteSnippet">
-                    <h3>"`+ notes[i].text + `" \n </h3></div>`;
+                    <h3> ${notes[i].text} </h3> <br>
+                    <i class="fa fa-times deleteNote" data="${notes[i]._id}" aria-hidden="false"></i>
+                    </div>`;
             } else {
                 notes[i]++;
             }
@@ -43,6 +45,25 @@ function displayNotes(selectProductionId){
 
 let displayError = (error) => {
     console.log("Error");
+};
+
+$(document).on("click",".deleteNote",function(){
+    let item = $(this).attr("data");
+    deleteNote(item);
+    // better way to refresh/reload document without 
+    // kicking you out of the notes displayed for the current production? 
+    location.reload(); 
+})
+
+function deleteNote(data){
+    var request = $.ajax({
+        url: baseUrl + "/notes/" + data,
+        method: "DELETE",
+        contentType: "application/json"
+    });
+    let displayError = (error) => {
+        console.log("Error");
+    };
 };
 
 let token = localStorage.getItem("authToken");

@@ -9,7 +9,7 @@ const router = express.Router();
 
 const createAuthToken = function(user) {
   return jwt.sign({user}, config.JWT_SECRET, {
-    subject: user.username,
+    subject: user.email,
     expiresIn: config.JWT_EXPIRY,
     algorithm: 'HS256'
   });
@@ -21,7 +21,7 @@ router.use(bodyParser.json());
 router.post('/login', localAuth, (req, res) => {
   const authToken = createAuthToken(req.user.apiRepr());
   let userType;
-  User.find({username: req.body.username})
+  User.find({email: req.body.email})
     .then(user => {
       userType = user.userType;
       console.log(user);

@@ -2,11 +2,10 @@ $("#signUp").submit(e => {
     e.preventDefault();
     let firstName = $("#firstName").val();
     let lastName = $("#lastName").val();
-    let username = $("#username").val();
+    let email = $("#email").val();
     let password = $("#password").val();
     let userType = $("input[name=role]:checked").val();
-    let user = {firstName, lastName, username, password, userType};
-    console.log(userType);
+    let user = {firstName, lastName, email, password, userType};
     
     let settings = {
         url: "/users",

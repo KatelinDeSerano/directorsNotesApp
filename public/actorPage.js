@@ -32,8 +32,8 @@ function displayNotes(selectProductionId){
             if (notes[i].productionId === selectProductionId && notes[i].actor === user) {
                 html += 
                     `<div class="noteSnippet">
-                    <h3> ${notes[i].text} </h3> <br>
                     <i class="fa fa-times deleteNote" data="${notes[i]._id}" aria-hidden="false"></i>
+                    <h3> ${notes[i].text} </h3> 
                     </div>`;
             } else {
                 notes[i]++;
@@ -50,9 +50,7 @@ let displayError = (error) => {
 $(document).on("click",".deleteNote",function(){
     let item = $(this).attr("data");
     deleteNote(item);
-    // better way to refresh/reload document without 
-    // kicking you out of the notes displayed for the current production? 
-    location.reload(); 
+    $(this).parent().remove();
 })
 
 function deleteNote(data){

@@ -24,9 +24,9 @@ const NotesSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  // readStatus: {
-  //     type: Boolean
-  // },
+  readStatus: {
+      type: Boolean
+  },
   created: {
     type: Date,
     default: Date.now

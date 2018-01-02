@@ -33,6 +33,10 @@ function displayNotes(selectProductionId){
                 html += 
                     `<div class="noteSnippet">
                     <i class="fa fa-times deleteNote" data="${notes[i]._id}" aria-hidden="false"></i>
+                    <div id="readToggle" data="${notes[i]._id}">
+                    <i class="fa fa-check-square-o readMarker" data="${notes[i]._id}" aria-hidden="true"></i>
+                    <i class="readMarkerText">Mark as read</i>
+                    </div>
                     <h3> ${notes[i].text} </h3> 
                     </div>`;
             } else {
@@ -64,6 +68,27 @@ function deleteNote(data){
     };
 };
 
+
+$(document).on("click","#readToggle",function(){
+    let item = $(this).attr("data");
+    readToggle(item);
+    $(this).parent().css("opacity","0.5");
+});
+
+function readToggle(data){
+    var request = $.ajax({
+        url: baseUrl + "/notes/" + data,
+        method: "PUT",
+        contentType: "application/json"
+    });
+   
+    let displayError = (error) => {
+        console.log("Error");
+    };
+};
+
+
+
 let token = localStorage.getItem("authToken");
 let user = localStorage.getItem("currentUser");
 
@@ -77,3 +102,5 @@ $.ajax ({
     success: displayProductions,
     error: displayError
   }); 
+
+

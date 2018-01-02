@@ -236,7 +236,26 @@ textarea {
 }
 
 .deleteNote {
+    float: right; 
+}
+
+.deleteNote:hover {
+    color: red; 
+}
+
+.readMarker {
     float: right;
+    padding-right: 7px;
+}
+
+.readMarkerText {
+    float: right;
+    font-size: 12px;
+    padding-right: 7px;
+}
+
+#readToggle:hover {
+    color: greenyellow;
 }
 
 @media screen and (max-width: 900px) {

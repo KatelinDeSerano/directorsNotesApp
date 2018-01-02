@@ -59,7 +59,8 @@ $("#msgform").submit(e => {
       production: production,
       actor: actor,
       text: text,
-      productionId: id
+      productionId: id,
+      readStatus: false
   }
   const authToken = localStorage.getItem('authToken');
   let settings = {

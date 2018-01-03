@@ -19,20 +19,19 @@
         <a class="active" href="#home">Home</a>
       </li>
       <h4>Productions</h4>
-      <div class="productionList">
         <a href="./createNewProduction.html" class="newProductionButton">Create New Production</a>
-        <div id="productionName"></div>
-      </div>
     </ul>
   </nav> 
   <div class="content">
     <h1>Hello Director!</h1>  
     <form id="msgform">
-      <input id="productionId" hidden>
-      <label for="production">Production</label></br>
-      <input id="production" type="text" readonly></br>
-      <label for="actor">Actor</label></br>
-      <input id="actor" type="text" readonly></br>
+        <input type="text" id="productionName" hidden/>
+        <select id="production" autofocus required >
+            <option>Choose a Production</option>
+        </select>  
+        <select id="actor" autofocus required>
+            <option>Choose an Actor</option>
+        </select> 
       <label for="text">Notes</label></br>
       <textarea id="msg" rows="4" cols="50"></textarea><br>
       <button type="submit" value="Submit">Submit</button>

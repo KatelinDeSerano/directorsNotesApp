@@ -37,7 +37,7 @@ router.post('/', jsonParser,(req,res) => {
         res.status(201).json(note);
     })
     .catch(err => {
-        res.status(500).json({message:"internal server error"});
+        res.status(500).json({message:"internal server error notes"});
     })
 });
 
@@ -62,19 +62,10 @@ router.delete('/:id', (req, res) => {
       error: 'No id found'
     });
   }
-  // const updated = {};
-  // const updateableFields = ['text','readStatus'];
-  // updateableFields.forEach(field => {
-  //   if (field in req.params.id) {
-  //     console.log("printing" + field);
-  //     updated[field] = req.body[field];
-  //   }
-  // });
-  
     Notes
       .findByIdAndUpdate(req.params.id, { $set: {readStatus:true} }, { new: true })
       .then(updatedPost => res.status(200).json(updatedPost))
-      .catch(err => res.status(500).json({ message: 'Something went wrong' }));
+      .catch(err => res.status(404).json({ message: 'Message not Found' }));
   });
 
 module.exports = {router};

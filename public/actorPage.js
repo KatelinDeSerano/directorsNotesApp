@@ -48,7 +48,7 @@ function displayNotes(selectProductionId){
 };
 
 let displayError = (error) => {
-    console.log("Error");
+    alert(err.responseJSON.message);
 };
 
 $(document).on("click",".deleteNote",function(){
@@ -64,7 +64,7 @@ function deleteNote(data){
         contentType: "application/json"
     });
     let displayError = (error) => {
-        console.log("Error");
+        alert(err.responseJSON.message);
     };
 };
 
@@ -83,7 +83,7 @@ function readToggle(data){
     });
    
     let displayError = (error) => {
-        console.log("Error");
+        alert(err.responseJSON.message);
     };
 };
 

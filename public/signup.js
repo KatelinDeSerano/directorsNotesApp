@@ -17,7 +17,7 @@ $("#signUp").submit(e => {
             window.location.replace("./login.html");
         },
         error: function(err) {
-            console.log(err.responseJSON.message);
+            alert(err.responseJSON.message);
         }
     }
     $.ajax(settings);

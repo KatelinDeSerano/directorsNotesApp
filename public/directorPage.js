@@ -60,7 +60,7 @@ $("#msgform").submit(e => {
       productionId: id,
       readStatus: false
   }
-  console.log(notes)
+
   const authToken = localStorage.getItem('authToken');
   let settings = {
       url: "/notes",
@@ -75,7 +75,7 @@ $("#msgform").submit(e => {
           $('#msgform').trigger("reset"); 
       },
       error: function(err) {
-          console.log(err);
+        alert(err.responseJSON.message);
       }
   }
   $.ajax(settings);

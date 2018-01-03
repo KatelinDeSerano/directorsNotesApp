@@ -30,7 +30,7 @@ $("#newProduction").submit(e => {
             console.log(data);
         },
         error: function(err) {
-            console.log(err);
+            alert(err.responseJSON.message);
         }
     }
     $.ajax(settings);

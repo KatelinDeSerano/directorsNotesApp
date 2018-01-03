@@ -21,7 +21,7 @@ $("#login").submit(e => {
             }
         },
         error: function(err) {
-            console.log(err);
+            alert(err.responseJSON.message);
         }
     }
     $.ajax(settings);

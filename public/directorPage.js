@@ -15,7 +15,7 @@ let msgFormProductionSelect = (productions) => {
         for (var j = 0; j < productions.length; j++) {
             if (productions[j]._id === this.value) {
                     var option = '';
-                    $('#happy').val(productions[j].productionName);
+                    $('#productionName').val(productions[j].productionName);
                     $("#actor option").remove();
                     console.log(productions[j].productionName);
                     
@@ -50,7 +50,7 @@ $("#msgform").submit(e => {
   let id = $("#production").val();
   let actor = $("#actor").val();
   let text = $("#msg").val();
-  let production = $("#production").val();
+  let production = $("#productionName").val();
   let director = localStorage.getItem("currentUser");
   let notes = {
       director: director,

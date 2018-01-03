@@ -17,6 +17,10 @@ nav {
     width: 75%;
 }
 
+h3 {
+    text-align: center;
+}
+
 #msgform {
     width: 75%;
     border: 1px solid grey;

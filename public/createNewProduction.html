@@ -13,17 +13,24 @@
         <link href="app.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
+        <nav>
+            <ul class="sidenav">
+                <li>
+                <a class="active" href="./directorDashboard.html">Dashboard</a>
+                </li>
+                <h4>Productions</h4>
+                <a href="./createNewProduction.html" class="newProductionButton">Create New Production</a>
+            </ul>
+        </nav> 
         <h1>Create New Production</h1>
         <form id="newProduction">
             Production Name<br>
             <input type="text" id="productionName"><br>
             Actors<br>
-            <input type="text" id="actorName"><br>
+            <input type="text" id="actorName"></br>
             <button type="button" id="addActor">Add Actor</button>
             <button type="submit">Submit</button>
         </form> 
-             <!-- Actor's name input should behave so that 
-                we can click a button to add another input line -->
         <script src="createNewProduction.js"></script>
     </body>
 </html>

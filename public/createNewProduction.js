@@ -5,7 +5,7 @@ $("#addActor").click(e => {
     let newActor = $("#actorName").val();
     $("#actorName").val("");
     actors.push(newActor);
-    $("#actorName").before(newActor);
+    $("#actorName").before("\n"+ newActor);
 })
 
 $("#newProduction").submit(e => {

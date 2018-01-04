@@ -33,9 +33,8 @@ function displayNotes(selectProductionId){
                 html += 
                     `<div class="noteSnippet">
                     <i class="fa fa-times deleteNote" data="${notes[i]._id}" aria-hidden="false"></i>
-                    <div id="readToggle" data="${notes[i]._id}">
-                    <i class="fa fa-check-square-o readMarker" data="${notes[i]._id}" aria-hidden="true"></i>
-                    <i class="readMarkerText">Mark as read</i>
+                    <div data="${notes[i]._id}">
+                    <input id="readToggle" type="checkbox" data="${notes[i]._id}" aria-hidden="true">Mark as read</input>
                     </div>
                     <h3> ${notes[i].text} </h3> 
                     </div>`;

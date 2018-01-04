@@ -1,9 +1,9 @@
-body {
+/* body {
     margin: 10px;
     padding-left: 20px;
     background-color: #f7f8f9;
     font-family: sans-serif;
-}
+} */
 
 nav {
     display: inline-block;
@@ -19,6 +19,25 @@ nav {
 
 h3 {
     text-align: center;
+    font-family: 'Inconsolata', monospace;
+    color: black;
+    font-size: 24px;
+}
+
+.landingPage {
+    background: url("images/theater_seating.jpg") no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw; 
+}
+
+.landingPageContent {
+    left: 50%;
+    margin-right: -50%;
+    padding: 30px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #msgform {
@@ -75,7 +94,7 @@ div.content {
 
 
 
-.dropbtn {
+.productionBtn {
     background-color: white;
     color:  #3C4042;
     width: 90%;
@@ -88,7 +107,7 @@ div.content {
     border: 1px solid #C3BAAA;
 }
 
-.dropbtn:hover {
+.productionBtn:hover {
     background-color: #64A6BD;
 }
 
@@ -129,12 +148,14 @@ div.content {
 
 h1 {
     text-align: center;
-    color: #3C4042;
+    color: black;
+    font-family: 'Inconsolata', monospace;
+    font-size: 42px;
 }
 
 h4 {
     text-align: center;
-    color: #3C4042'
+    color: black;
 }
 
 .newProductionButton {
@@ -153,19 +174,12 @@ h4 {
 }
 
 .button:hover {
-    background-color: darkgray;
+    background-color: black;
 }
 
 textarea {
     width: 75%;
     margin: 0 auto;
-
-    /* padding: 20px;
-    margin-left: 20rem;
-    margin-right: 5rem;
-    margin-bottom: 5rem;
-    margin-top: 5rem; */
-    
 }
 
 .signupLoginBox {
@@ -175,29 +189,31 @@ textarea {
 }
 
 .signUpBtn {
-    background-color: gray;
+    background-color: white;
     border: none;
-    color: white;
+    color: black;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block; 
     margin: auto;
+    font-family: 'Inconsolata', monospace;
 }
 
 .loginBtn {
-    background-color: gray;
+    background-color: white;
     border: none;
-    color: white;
+    color: black;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    margin: auto;  
+    margin: auto; 
+    font-family: 'Inconsolata', monospace; 
 }
 
 .signUp {
-    border: 1px solid grey;
+    border: 1px solid white;
     margin: 50px auto;
     width: 40%;
     padding: 30px;

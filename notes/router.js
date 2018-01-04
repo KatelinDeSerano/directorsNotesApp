@@ -9,7 +9,7 @@ const jsonParser = bodyParser.json();
 
 // add authentication 
 
-router.get('/', function(req, res) {
+router.get('/actor', function(req, res) {
   console.log(req.query.actor);
     Notes
     .find({actor: req.query.actor, productionId: req.query.productionId})
@@ -21,6 +21,19 @@ router.get('/', function(req, res) {
         res.status(500).json({message: 'internal server error'});
     })
 });
+
+router.get('/director', function(req, res) {
+    console.log(req.query.actor);
+      Notes
+      .find({director: req.query.director, productionId: req.query.productionId})
+      .exec()
+      .then(notes => {
+          res.status(200).json(notes);
+      })
+      .catch(err => {
+          res.status(500).json({message: 'internal server error'});
+      })
+  });
 
 router.post('/', jsonParser,(req,res) => { 
  const requiredFields = ['director', 'production','actor', 'text'];

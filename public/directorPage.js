@@ -2,14 +2,55 @@
 baseUrl = "http://localhost:8080/";
 
 
+let displayDropdownProductions = (productions) => {
+    let html = "";
+    for (var i = 0; i < productions.length; i++) {
+        var selectProductionId = productions[i]._id;
+        html += 
+              `<button class="productionBtn" id="productionBtn" value="${selectProductionId}" data="${selectProductionId}"
+              onclick="displayNotes('${selectProductionId}')">`+ 
+              productions[i].productionName + `</button>`;
+    }
+    $('#productionList').html(html);  
+};
+
+function displayNotes(selectProductionId){
+    let user = localStorage.getItem("currentUser");
+    var request = $.ajax({
+        url: baseUrl + "/notes/director",
+        method: "GET",
+        data: { director: user,
+                productionId : selectProductionId
+        },
+        contentType: "application/json"
+    });
+    request.done(function (notes) {
+        let html = "";
+        
+        for (var i=0; i < notes.length; i++) {
+            if (notes[i].productionId === selectProductionId && notes[i].actor === user) {
+                html += 
+                    `<div class="noteSnippet">
+                    <i class="fa fa-times deleteNote" data="${notes[i]._id}" aria-hidden="false"></i>
+                    <div data="${notes[i]._id}">
+                    <input id="readToggle" type="checkbox" data="${notes[i]._id}" aria-hidden="true">Mark as read</input>
+                    </div>
+                    <h3> ${notes[i].text} </h3> 
+                    </div>`;
+            } else {
+                notes[i]++;
+            }
+        }
+        $('.content').html(html);
+    });
+};
+
+
 let msgFormProductionSelect = (productions) => {
     option = "";
     for (var i = 0; i < productions.length; i++) {
         option += '<option value="' + productions[i]._id + '">' + productions[i].productionName + '</option>';
     };
-
-   
-
     $('#production').append(option);
     $('#production').on('change', function () {
         for (var j = 0; j < productions.length; j++) {
@@ -29,11 +70,9 @@ let msgFormProductionSelect = (productions) => {
 };
 
 
-
-
-
 let token = localStorage.getItem("authToken");
 let user = localStorage.getItem("currentUser");
+
 
 $.ajax ({
   url: baseUrl + "productions/director/" + user,
@@ -42,7 +81,7 @@ $.ajax ({
   headers: {
     Authorization: `Bearer ${token}`
   },
-  success:  msgFormProductionSelect
+  success:  [displayDropdownProductions, msgFormProductionSelect]
 }); 
 
 $("#msgform").submit(e => {
@@ -60,6 +99,7 @@ $("#msgform").submit(e => {
       productionId: id,
       readStatus: false
   }
+
 
   const authToken = localStorage.getItem('authToken');
   let settings = {
@@ -79,5 +119,5 @@ $("#msgform").submit(e => {
       }
   }
   $.ajax(settings);
-})
+});
 

@@ -17,18 +17,18 @@ let displayDropdownProductions = (productions) => {
 function displayNotes(selectProductionId){
     let user = localStorage.getItem("currentUser");
     var request = $.ajax({
-        url: baseUrl + "/notes/director",
+        url: baseUrl + "notes",
         method: "GET",
-        data: { director: user,
+        data: { 
                 productionId : selectProductionId
         },
         contentType: "application/json"
     });
     request.done(function (notes) {
         let html = "";
-        
+        console.log(notes);
         for (var i=0; i < notes.length; i++) {
-            if (notes[i].productionId === selectProductionId && notes[i].actor === user) {
+            if (notes[i].productionId === selectProductionId) {
                 html += 
                     `<div class="noteSnippet">
                     <i class="fa fa-times deleteNote" data="${notes[i]._id}" aria-hidden="false"></i>

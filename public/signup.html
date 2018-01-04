@@ -11,19 +11,22 @@
         
     </head>
     <body>
-        <h1>Director's Notes</h1>
+        
         <form id="signUp">
-            First Name<br>
+            <h1>Director's Notes</h1>
+            <label for="firstName">First Name</label><br>
             <input type="text" id="firstName"><br>
-            Last Name<br>
+            <label for="lastName">Last Name</label><br>
             <input type="text" id="lastName"><br>
-            Email<br>
+            <label for="email">Email</label><br>
             <input type="email" id="email"><br>
-            Password<br>
+            <label for="password">Password</label><br>
             <input type="password" id="password"><br>
-            <input type="radio" name="role" value="actor"> Actor<br>
-            <input type="radio" name="role" value="director"> Director<br>
-            <button type="submit">Submit</button>
+            
+            <input type="radio" name="role" value="actor"><label for="role"></label>Actor</label><br>
+            
+            <input type="radio" name="role" value="director"><label for="role">Director</label><br>
+            <button class="signUpBtn" type="submit">Submit</button>
         </form> 
         <script src="signup.js"></script>     
     </body>

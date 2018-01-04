@@ -10,7 +10,7 @@ const jsonParser = bodyParser.json();
 // add authentication 
 
 router.get('/actor', function(req, res) {
-  console.log(req.query.actor);
+  
     Notes
     .find({actor: req.query.actor, productionId: req.query.productionId})
     .exec()
@@ -22,12 +22,13 @@ router.get('/actor', function(req, res) {
     })
 });
 
-router.get('/director', function(req, res) {
-    console.log(req.query.actor);
+router.get('/', function(req, res) {
+    
       Notes
-      .find({director: req.query.director, productionId: req.query.productionId})
+      .find({productionId: req.query.productionId})
       .exec()
       .then(notes => {
+          console.log(notes);
           res.status(200).json(notes);
       })
       .catch(err => {
@@ -66,17 +67,14 @@ router.delete('/:id', (req, res) => {
       });
   });
 
-  router.put('/:id', jsonParser, (req, res) => {
-
-  console.log("puttin"+req.params.id);
-  
+  router.put('/:id', jsonParser, (req, res) => {  
   if (!req.params.id) {
     res.status(400).json({
       error: 'No id found'
     });
   }
     Notes
-      .findByIdAndUpdate(req.params.id, { $set: {readStatus:true} }, { new: true })
+      .findByIdAndUpdate(req.params.id, { new: true })
       .then(updatedPost => res.status(200).json(updatedPost))
       .catch(err => res.status(404).json({ message: 'Message not Found' }));
   });

@@ -8,11 +8,11 @@ let displayProductions = (productions) => {
     for (var i = 0; i < productions.length; i++) {
         var selectProductionId = productions[i]._id;
         html += 
-              `<button class="dropbtn" id="productionBtn" value="${selectProductionId}" data="${selectProductionId}"
+              `<button class="productionBtn" id="productionBtn" value="${selectProductionId}" data="${selectProductionId}"
               onclick="displayNotes('${selectProductionId}')">`+ 
               productions[i].productionName + `</button>`;  
     }
-    $('#productionName').html(html);
+    $('#productionList').html(html);
 };
 
 function displayNotes(selectProductionId){
@@ -34,7 +34,7 @@ function displayNotes(selectProductionId){
                     `<div class="noteSnippet">
                     <i class="fa fa-times deleteNote" data="${notes[i]._id}" aria-hidden="false"></i>
                     <div data="${notes[i]._id}">
-                    <input id="readToggle" type="checkbox" data="${notes[i]._id}" aria-hidden="true">Mark as read</input>
+                    <input id="readToggle" type="checkbox" role="checkbox" data="${notes[i]._id}">Mark as read</input>
                     </div>
                     <h3> ${notes[i].text} </h3> 
                     </div>`;
@@ -68,10 +68,16 @@ function deleteNote(data){
 };
 
 
-$(document).on("click","#readToggle",function(){
-    let item = $(this).attr("data");
-    readToggle(item);
-    $(this).parent().css("opacity","0.5");
+$(document).on("change","#readToggle",function(){
+    // let item = $(this).attr("data");
+    // if(readToggle.value() === "checked"){
+
+    // //   readToggle(item);  
+    // } else {
+
+    // }
+
+    // $(this).parent().css("opacity","0.5");
 });
 
 function readToggle(data){

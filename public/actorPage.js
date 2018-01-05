@@ -30,14 +30,28 @@ function displayNotes(selectProductionId){
         
         for (var i=0; i < notes.length; i++) {
             if (notes[i].productionId === selectProductionId && notes[i].actor === user) {
-                html += 
+                console.log(notes[i].readStatus);
+                if (notes[i].readStatus === false){
+                    html += 
                     `<div class="noteSnippet">
                     <i class="fa fa-times deleteNote" data="${notes[i]._id}" aria-hidden="false"></i>
                     <div data="${notes[i]._id}">
-                    <input id="readToggle" type="checkbox" role="checkbox" data="${notes[i]._id}">Mark as read</input>
+                    <span class="readNote" data="${notes[i]._id}"><i class="fa fa-check-square-o" aria-hidden="true" data="${notes[i]._id}"></i>Mark as read</span>
                     </div>
-                    <h3> ${notes[i].text} </h3> 
+                    <p> ${notes[i].text} </p> 
                     </div>`;
+
+                }else{
+                    html += 
+                    `<div class="noteSnippetRead">
+                    <i class="fa fa-times deleteNote" data="${notes[i]._id}" aria-hidden="false"></i>
+                    <div data="${notes[i]._id}">
+                    <span class="readNote" data="${notes[i]._id}"><i class="fa fa-check-square-o" aria-hidden="true" data="${notes[i]._id}"></i>Mark as read</span>
+                    </div>
+                    <p> ${notes[i].text} </p> 
+                    </div>`;
+                }
+
             } else {
                 notes[i]++;
             }
@@ -67,18 +81,26 @@ function deleteNote(data){
     };
 };
 
+$(document).on("click",".readNote",function(){
+    let item = $(this).attr("data");
+    readNote(item);
+    
+})
 
-$(document).on("change","#readToggle",function(){
-    // let item = $(this).attr("data");
-    // if(readToggle.value() === "checked"){
+function readNote(data){
+    console.log("update true")
+    var request = $.ajax({
+        url: baseUrl + "/notes/" + data,
+        method: "PUT",
+        contentType: "application/json"
+    });
+   
+    let displayError = (error) => {
+        alert(err.responseJSON.message);
+    };
+    window.location.reload(true);
+};
 
-    // //   readToggle(item);  
-    // } else {
-
-    // }
-
-    // $(this).parent().css("opacity","0.5");
-});
 
 function readToggle(data){
     var request = $.ajax({
@@ -91,8 +113,6 @@ function readToggle(data){
         alert(err.responseJSON.message);
     };
 };
-
-
 
 let token = localStorage.getItem("authToken");
 let user = localStorage.getItem("currentUser");

@@ -67,14 +67,14 @@ router.delete('/:id', (req, res) => {
       });
   });
 
-  router.put('/:id', jsonParser, (req, res) => {  
+  router.put('/:id', jsonParser, (req, res) => { ;
   if (!req.params.id) {
     res.status(400).json({
       error: 'No id found'
     });
   }
     Notes
-      .findByIdAndUpdate(req.params.id, { new: true })
+      .findByIdAndUpdate(req.params.id, { readStatus: true })
       .then(updatedPost => res.status(200).json(updatedPost))
       .catch(err => res.status(404).json({ message: 'Message not Found' }));
   });

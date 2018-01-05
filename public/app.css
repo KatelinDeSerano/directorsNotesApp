@@ -1,22 +1,30 @@
 body {
-    margin: 10px;
-    padding-left: 20px;
-    background-color: white;
-    font-family: sans-serif;
+    background: url("images/theater_seating.jpg") no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw; 
 }
 
 h1 {
     text-align: center;
-    color: white;
+    color: black;
     font-family: 'Inconsolata', monospace;
     font-size: 42px;
+}
+
+.landingPage h1 {
+    color: white;
 }
 
 h3 {
     text-align: center;
     font-family: 'Inconsolata', monospace;
-    color: white;
+    color: black;
     font-size: 24px;
+}
+
+.landingPage h3 {
+    color: white;
 }
 
 
@@ -112,9 +120,6 @@ h4 {
     font-family: 'Inconsolata', monospace;
 }
 
-
-
-
 nav {
     display: inline-block;
     width: 25%;
@@ -123,8 +128,10 @@ nav {
 }
 
 .content {
-    display: inline-block;
-    width: 75%;
+    background: url("images/theater_seating.jpg") no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw; ;
 }
 
 #msgform {
@@ -179,8 +186,6 @@ div.content {
     height: 1000px;
 }
 
-
-
 .productionBtn {
     background-color: white;
     color:  #3C4042;
@@ -201,6 +206,22 @@ div.content {
 #newProduction {
     margin-left: 45%;
     margin-right: 45%;
+}
+
+.noteSnippet {
+    margin: 20px 20px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 5px 5px 10px #C3BAAA;
+    color: black;
+}
+
+.noteSnippetRead {
+    margin: 20px 20px;
+    padding: 10px;
+    background-color: rgb(149, 231, 110);
+    box-shadow: 5px 5px 10px #C3BAAA;
+    color: black;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -299,13 +320,6 @@ textarea {
     margin: 0 auto;   
 }
 
-.noteSnippet {
-    margin: 20px 20px;
-    padding: 10px;
-    background-color: white;
-    box-shadow: 5px 5px 10px #C3BAAA;
-    color: #3C4042;
-}
 
 .deleteNote {
     float: right; 

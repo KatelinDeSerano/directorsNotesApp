@@ -27,6 +27,7 @@ function displayNotes(selectProductionId){
     request.done(function (notes) {
         let html = "";
         console.log(notes);
+        // TODO:  update to match Actor's page logic
         for (var i=0; i < notes.length; i++) {
             if (notes[i].productionId === selectProductionId) {
                 html += 
@@ -111,7 +112,6 @@ $("#msgform").submit(e => {
       },
       data: JSON.stringify(notes),
       success: function(data) {
-          console.log(data);
           $('#msgform').trigger("reset"); 
       },
       error: function(err) {
@@ -121,3 +121,19 @@ $("#msgform").submit(e => {
   $.ajax(settings);
 });
 
+$(document).on("click",".deleteNote",function(){
+    let item = $(this).attr("data");
+    deleteNote(item);
+    $(this).parent().remove();
+})
+
+function deleteNote(data){
+    var request = $.ajax({
+        url: baseUrl + "/notes/" + data,
+        method: "DELETE",
+        contentType: "application/json"
+    });
+    let displayError = (error) => {
+        alert(err.responseJSON.message);
+    };
+};

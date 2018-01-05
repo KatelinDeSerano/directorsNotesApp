@@ -36,7 +36,7 @@ function displayNotes(selectProductionId){
                     `<div class="noteSnippet">
                     <i class="fa fa-times deleteNote" data="${notes[i]._id}" aria-hidden="false"></i>
                     <div data="${notes[i]._id}">
-                    <span class="readNote" data="${notes[i]._id}"><i class="fa fa-check-square-o" aria-hidden="true" data="${notes[i]._id}"></i>Mark as read</span>
+                    <span class="readNote" data="${notes[i]._id}"><i class="fa fa-square-o" aria-hidden="true" data="${notes[i]._id}"></i>&nbsp; Mark as read</span>
                     </div>
                     <p> ${notes[i].text} </p> 
                     </div>`;
@@ -46,7 +46,7 @@ function displayNotes(selectProductionId){
                     `<div class="noteSnippetRead">
                     <i class="fa fa-times deleteNote" data="${notes[i]._id}" aria-hidden="false"></i>
                     <div data="${notes[i]._id}">
-                    <span class="readNote" data="${notes[i]._id}"><i class="fa fa-check-square-o" aria-hidden="true" data="${notes[i]._id}"></i>Mark as read</span>
+                    <span class="readNote" data="${notes[i]._id}"><i class="fa fa-check-square-o" aria-hidden="true" data="${notes[i]._id}"></i>&nbsp; Mark as read</span>
                     </div>
                     <p> ${notes[i].text} </p> 
                     </div>`;
@@ -84,6 +84,8 @@ function deleteNote(data){
 $(document).on("click",".readNote",function(){
     let item = $(this).attr("data");
     readNote(item);
+    $(this).parent().parent().attr("class","noteSnippetRead");
+    $(this).find("i").attr("class","fa fa-check-square-o");
 })
 
 function readNote(data){
@@ -97,7 +99,6 @@ function readNote(data){
     let displayError = (error) => {
         alert(err.responseJSON.message);
     };
-    location.reload(true);
 };
 
 function readToggle(data){

@@ -10,7 +10,6 @@ var expect  = require('chai').expect;
 
 describe('director app unit tests', function() {
     before(function() {
-        
     });
     after(function() {
         app.close();

@@ -2,7 +2,7 @@ body {
     background: url("images/theater_seating.jpg") no-repeat center center fixed;
     background-size: cover;
     height: 100vh;
-    width: 100vw; 
+    width: 100vw;
 }
 
 h1 {
@@ -49,28 +49,42 @@ h4 {
     transform: translate(-50%, -50%);
 }
 
+.signupLoginBox {
+    margin: auto;
+    width: 60%;
+    text-align: center;
+}
+
 #signUp {
     color: white;
     margin: 50px auto;
     width: 40%;
     padding: 30px;
-    box-shadow: 5px 5px 10px #C3BAAA;
     background-color: black;
 }
 
-#signUp label {
+.signUpFeilds label {
     margin-left: 20%;
     margin-right: 20%;
     float: left;
 }
 
-/* TODO: style radio buttons so they aren't all over the place */
-#signUp input {
+.signUpFeilds input {
     margin-bottom: 20px;
     margin-left: 20%;
     margin-right: 20%;
     width: 60%;
-    
+}
+
+#signUp h1 {
+    color: white;
+}
+
+.role input{
+    margin-left: 20%;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: 0;
 }
 
 .signUpBtn {
@@ -79,10 +93,15 @@ h4 {
     color: black;
     padding: 15px 32px;
     text-align: center;
-    text-decoration: none; 
+    text-decoration: none;
+    display: inline-block; 
     margin: auto;
-    width: 40%;
     font-family: 'Inconsolata', monospace;
+}
+
+.signUpBtn:hover {
+    transform: scale(1.05, 1.05);
+    background-color: gold;
 }
 
 #login {
@@ -90,8 +109,11 @@ h4 {
     margin: 50px auto;
     width: 40%;
     padding: 30px;
-    box-shadow: 5px 5px 10px #C3BAAA;
     background-color: black;
+}
+
+#login h1 {
+    color: white;
 }
 
 #login label {
@@ -114,10 +136,15 @@ h4 {
     color: black;
     padding: 15px 32px;
     text-align: center;
-    text-decoration: none; 
+    text-decoration: none;
+    display: inline-block; 
     margin: auto;
-    width: 40%;
     font-family: 'Inconsolata', monospace;
+}
+
+.loginBtn:hover {
+    transform: scale(1.05, 1.05);
+    background-color: gold;
 }
 
 nav {
@@ -281,34 +308,6 @@ textarea {
 }
 
 
-
-
-.loginBtn {
-    background-color: white;
-    border: none;
-    color: black;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: auto; 
-    font-family: 'Inconsolata', monospace; 
-}
-
-
-#login {
-    color: white;
-    margin: 50px auto;
-    width: 40%;
-    padding: 30px;
-    box-shadow: 5px 5px 10px #C3BAAA;
-    background-color: black;
-}
-
-.login input {
-    margin-bottom: 10px;
-    color: white;
-}
 
 #sendBtn {
     margin-left: 20rem;

@@ -13,20 +13,24 @@
     <body>
         
         <form id="signUp">
+            <div class="signUpFeilds">
             <h1>Director's Notes</h1>
-            <label for="firstName">First Name</label><br>
-            <input type="text" id="firstName"><br>
-            <label for="lastName">Last Name</label><br>
-            <input type="text" id="lastName"><br>
-            <label for="email">Email</label><br>
-            <input type="email" id="email"><br>
-            <label for="password">Password</label><br>
-            <input type="password" id="password"><br>
-            
-            <input type="radio" name="role" value="actor"><label for="role"></label>Actor</label><br>
-            
-            <input type="radio" name="role" value="director"><label for="role">Director</label><br>
-            <button class="signUpBtn" type="submit">Submit</button>
+                <label for="firstName">First Name</label><br>
+                <input type="text" id="firstName"><br>
+                <label for="lastName">Last Name</label><br>
+                <input type="text" id="lastName"><br>
+                <label for="email">Email</label><br>
+                <input type="email" id="email"><br>
+                <label for="password">Password</label><br>
+                <input type="password" id="password"><br>
+            </div>
+            <div class="role">
+                <input type="radio" name="role" value="actor">Actor<br>
+                <input type="radio" name="role" value="director">Director<br>
+            </div>
+            <div class="signupLoginBox">
+                <button class="signUpBtn" type="submit">Submit</button>
+            </div>
         </form> 
         <script src="signup.js"></script>     
     </body>

@@ -84,7 +84,6 @@ function deleteNote(data){
 $(document).on("click",".readNote",function(){
     let item = $(this).attr("data");
     readNote(item);
-    
 })
 
 function readNote(data){
@@ -98,9 +97,8 @@ function readNote(data){
     let displayError = (error) => {
         alert(err.responseJSON.message);
     };
-    window.location.reload(true);
+    location.reload(true);
 };
-
 
 function readToggle(data){
     var request = $.ajax({

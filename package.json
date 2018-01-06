@@ -4,7 +4,7 @@
   "description": "App for giving production notes with ease",
   "main": "server.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --timeout 5000",
     "start": "node server.js"
   },
   "repository": {

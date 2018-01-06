@@ -6,36 +6,36 @@ let displayDropdownProductions = (productions) => {
     let html = "";
     for (var i = 0; i < productions.length; i++) {
         var selectProductionId = productions[i]._id;
-        html += 
-              `<div class="dropdown">
+        html +=
+            `<div class="dropdown">
               <button class="productionBtn" id="productionBtn" value="${selectProductionId}" data="${selectProductionId}"
-              onclick="displayNotes('${selectProductionId}')">`+ 
-              productions[i].productionName + `</button>
+              onclick="displayNotes('${selectProductionId}')">` +
+            productions[i].productionName + `</button>
               <div class="dropdown-content">
-              <a id="viewProductionNotes" onclick="displayNotes('${selectProductionId}')">View Production Notes</a>
-              <a id="deleteProduction" onclick="handleDeleteProduction('${selectProductionId}')">Delete Production</a>
+                <a id="viewProductionNotes" onclick="displayNotes('${selectProductionId}')">View Production Notes</a>
+                <a id="deleteProduction" onclick="handleDeleteProduction('${selectProductionId}')">Delete Production</a>
               </div>
                </div>`;
     }
-    $('#productionList').html(html);  
+    $('#productionList').html(html);
 };
 
-function displayNotes(selectProductionId){
+function displayNotes(selectProductionId) {
     let user = localStorage.getItem("currentUser");
     var request = $.ajax({
         url: baseUrl + "notes",
         method: "GET",
-        data: { 
-            productionId : selectProductionId
+        data: {
+            productionId: selectProductionId
         },
         contentType: "application/json"
     });
     request.done(function (notes) {
         let html = "";
         // TODO:  update to match Actor's page logic
-        for (var i=0; i < notes.length; i++) {
+        for (var i = 0; i < notes.length; i++) {
             if (notes[i].productionId === selectProductionId) {
-                html += 
+                html +=
                     `<div class="noteSnippet">
                     <i class="fa fa-times deleteNote" data="${notes[i]._id}" aria-hidden="false"></i>
                     <div data="${notes[i]._id}">
@@ -60,74 +60,72 @@ let msgFormProductionSelect = (productions) => {
     $('#production').on('change', function () {
         for (var j = 0; j < productions.length; j++) {
             if (productions[j]._id === this.value) {
-                    var option = '';
-                    $('#productionName').val(productions[j].productionName);
-                    $("#actor option").remove();
-                    console.log(productions[j].productionName);
-                    
-                for ( var k = 0; k <productions[j].actors.length; k++){     
-                    option += '<option>' + productions[j].actors[k]+ '</option>';
+                var option = '';
+                $('#productionName').val(productions[j].productionName);
+                $("#actor option").remove();
+                console.log(productions[j].productionName);
+
+                for (var k = 0; k < productions[j].actors.length; k++) {
+                    option += '<option>' + productions[j].actors[k] + '</option>';
                 }
                 $('#actor').append(option);
-            }   
-        }  
+            }
+        }
     });
 };
-
 
 let token = localStorage.getItem("authToken");
 let user = localStorage.getItem("currentUser");
 
-
-$.ajax ({
-  url: baseUrl + "productions/director/" + user,
-  type: "GET",
-  dataType: "json",
-  headers: {
-    Authorization: `Bearer ${token}`
-  },
-  success:  [displayDropdownProductions, msgFormProductionSelect]
-}); 
-
-$("#msgform").submit(e => {
-  e.preventDefault();
-  let id = $("#production").val();
-  let actor = $("#actor").val();
-  let text = $("#msg").val();
-  let production = $("#productionName").val();
-  let director = localStorage.getItem("currentUser");
-  let notes = {
-      director: director,
-      production: production,
-      actor: actor,
-      text: text,
-      productionId: id,
-      readStatus: false
-  }
-
-
-  const authToken = localStorage.getItem('authToken');
-  let settings = {
-      url: "/notes",
-      type: "POST",
-      contentType: "application/json",
-      headers: { 
-          Authorization: `Bearer ${authToken}` 
-      },
-      data: JSON.stringify(notes),
-      success: function(data) {
-          $('#msgform').trigger("reset"); 
-      },
-      error: function(err) {
-        alert(err.responseJSON.message);
-      }
-  }
-  $.ajax(settings);
+$.ajax({
+    url: baseUrl + "productions/director/" + user,
+    type: "GET",
+    dataType: "json",
+    headers: {
+        Authorization: `Bearer ${token}`
+    },
+    success: [displayDropdownProductions, msgFormProductionSelect]
 });
 
-$(document).on("click",".newProductionBtn",function(){
+$("#msgform").submit(e => {
+    e.preventDefault();
+    let id = $("#production").val();
+    let actor = $("#actor").val();
+    let text = $("#msg").val();
+    let production = $("#productionName").val();
+    let director = localStorage.getItem("currentUser");
+    let notes = {
+        director: director,
+        production: production,
+        actor: actor,
+        text: text,
+        productionId: id,
+        readStatus: false
+    }
+
+
+    const authToken = localStorage.getItem('authToken');
+    let settings = {
+        url: "/notes",
+        type: "POST",
+        contentType: "application/json",
+        headers: {
+            Authorization: `Bearer ${authToken}`
+        },
+        data: JSON.stringify(notes),
+        success: function (data) {
+            $('#msgform').trigger("reset");
+        },
+        error: function (err) {
+            alert(err.responseJSON.message);
+        }
+    }
+    $.ajax(settings);
+});
+
+$(document).on("click", ".newProductionBtn", function () {
     console.log("click");
-    let html="";
+    let html = "";
     html += `<h1>Create A New Production</h1>
                 <form id="newProduction">
                     <label for="productionName">Production Name</label><br>
@@ -145,15 +143,15 @@ $(document).on("click",".newProductionBtn",function(){
 
 let actors = [];
 
-$(document).on("click","#addActor",function(){
+$(document).on("click", "#addActor", function () {
     event.preventDefault();
     let newActor = $("#actorName").val();
     $("#actorName").val("");
     actors.push(newActor);
-    $("#actorName").before("<p style='color:gray; font-family:sans-serif;'>"+ newActor + "<br></p>");
+    $("#actorName").before("<p style='color:gray; font-family:sans-serif;'>" + newActor + "<br></p>");
 })
 
-$(document).on("submit","#newProduction",function(){
+$(document).on("submit", "#newProduction", function () {
     event.preventDefault();
     let productionName = $("#productionName").val();
     let director = localStorage.getItem("currentUser");
@@ -167,75 +165,63 @@ $(document).on("submit","#newProduction",function(){
         url: "/productions",
         type: "POST",
         contentType: "application/json",
-        headers: { 
-            Authorization: `Bearer ${authToken}` 
+        headers: {
+            Authorization: `Bearer ${authToken}`
         },
         data: JSON.stringify(production),
-        success: function(data) {
+        success: function (data) {
             loation.alert("Your production, " + productionName + ", has successfully been created.");
             location.reload();
         },
-        error: function(err) {
+        error: function (err) {
             alert(err.responseJSON.message);
         }
     }
     $.ajax(settings);
 });
 
-$(document).on("click",".deleteNote",function(){
+$(document).on("click", ".deleteNote", function () {
     let item = $(this).attr("data");
     deleteNote(item);
     $(this).parent().remove();
 });
 
-function deleteNote(data){
+function deleteNote(data) {
+    const authToken = localStorage.getItem('authToken');
     var request = $.ajax({
         url: baseUrl + "/notes/" + data,
         method: "DELETE",
-        contentType: "application/json"
+        contentType: "application/json",
+        headers: {
+            Authorization: `Bearer ${authToken}`
+        }
     });
     let displayError = (error) => {
         alert(err.responseJSON.message);
     };
 };
 
-// $(document).on("click","#deleteProduction",function(){
-    
-//     let confirmDelete = confirm("Are you sure you want to delete this production?  All records will be lost.");
-//     if (confirmDelete === true) {
-//         let item = $(this).attr("data");
-//         handleDeleteProduction(item);
-//         $(this).parent().remove();
-//     } else {
-//         alert("Delete cancelled.");
-//     }
-// });
-
-function handleDeleteProduction(data){
+function handleDeleteProduction(data) {
     console.log(data);
     let confirmDelete = confirm("Are you sure you want to delete this production?  All records will be lost.");
     if (confirmDelete === true) {
-        let item = $(this).attr("data");
-        handleDeleteProduction(item);
-        $(this).parent().remove();
+        const authToken = localStorage.getItem('authToken');
+        let settings = {
+            url: "productions/" + data,
+            type: "DELETE",
+            contentType: "application/json",
+            headers: {
+                Authorization: `Bearer ${authToken}`
+            },
+            success: function (data) {
+                $(this).parent().remove();
+            },
+            error: function (err) {
+                alert(err.responseJSON.message);
+            }
+        }
+        $.ajax(settings);
     } else {
         alert("Delete cancelled.");
     }
-    var request = $.ajax({
-        url: baseUrl + "productions/" + data,
-        method: "DELETE",
-        contentType: "application/json"
-    });
-    let displayError = (error) => {
-        alert(err.responseJSON.message);
-    };
 };
-//     var request = $.ajax({
-//         url: baseUrl + "productions/" + data,
-//         method: "DELETE",
-//         contentType: "application/json"
-//     });
-//     let displayError = (error) => {
-//         alert(err.responseJSON.message);
-//     };
-// };

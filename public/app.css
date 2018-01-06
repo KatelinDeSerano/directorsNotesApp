@@ -1,6 +1,7 @@
 body {
+    margin: 0;
     background-image: url("images/theater_seating.jpg");
-    background-position: fixed;
+    background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: 100% 100%; 
 }
@@ -33,13 +34,6 @@ h4 {
     text-decoration: underline;
 }
 
-.landingPage {
-    background: url("images/theater_seating.jpg") no-repeat center center fixed;
-    background-size: cover;
-    height: 100vh;
-    width: 100vw; 
-}
-
 .landingPageContent {
     left: 50%;
     margin-right: -50%;
@@ -60,10 +54,13 @@ h4 {
     color:  #3C4042;
     font-family: 'Inconsolata', monospace;
     font-size: 1.5rem;
-    margin: auto;
+    left: 50%;
+    margin-right: -50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     padding: 30px;
+    position: absolute;
     text-shadow: none;
-    width: 50%;
 }
 
 .signUpFeilds label {
@@ -95,7 +92,7 @@ h4 {
     display: inline-block;
     font-family: sans-serif;
     font-size: 16px;
-    margin: auto;
+    margin: auto auto 10px auto;
     padding: 15px 24px;
     text-align: center;
     text-decoration: none; 
@@ -111,10 +108,13 @@ h4 {
     color:  #3C4042;
     font-family: 'Inconsolata', monospace;
     font-size: 1.5rem;
-    margin: auto;
+    left: 50%;
+    margin-right: -50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     padding: 30px;
+    position: absolute;
     text-shadow: none;
-    width: 50%;
 }
 
 #login label {
@@ -188,6 +188,7 @@ div.content {
     padding: 30px;
     text-shadow: none;
     width: 75%;
+    position: fixed;
 }
 
 #newProduction input {
@@ -271,13 +272,6 @@ select {
 select::-ms-expand {
     display: none;
 }
-
-/* #msgform {
-    width: 90%;
-    margin: auto;
-    text-align: center;
-} */
-
 
 #production {
     border: 1px solid grey;
@@ -454,5 +448,9 @@ textarea {
     .content {
         width: 100%;
     }
+
+    /* #signUp {
+        transform: scale(0.75, 0.75);
+    } */
 }
 

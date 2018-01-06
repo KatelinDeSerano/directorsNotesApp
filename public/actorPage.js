@@ -18,7 +18,7 @@ let displayProductions = (productions) => {
 function displayNotes(selectProductionId){
     let user = localStorage.getItem("currentUser");
     var request = $.ajax({
-        url: baseUrl + "/notes",
+        url: "/notes",
         method: "GET",
         data: { actor : user,
                 productionId : selectProductionId
@@ -72,7 +72,7 @@ $(document).on("click",".deleteNote",function(){
 
 function deleteNote(data){
     var request = $.ajax({
-        url: baseUrl + "/notes/" + data,
+        url: "/notes/" + data,
         method: "DELETE",
         contentType: "application/json"
     });
@@ -91,7 +91,7 @@ $(document).on("click",".readNote",function(){
 function readNote(data){
     console.log("update true")
     var request = $.ajax({
-        url: baseUrl + "/notes/" + data,
+        url: "/notes/" + data,
         method: "PUT",
         contentType: "application/json"
     });
@@ -103,7 +103,7 @@ function readNote(data){
 
 function readToggle(data){
     var request = $.ajax({
-        url: baseUrl + "/notes/" + data,
+        url: "/notes/" + data,
         method: "PUT",
         contentType: "application/json"
     });
@@ -117,7 +117,7 @@ let token = localStorage.getItem("authToken");
 let user = localStorage.getItem("currentUser");
 
 $.ajax ({
-    url: baseUrl + "/productions/actor/" + user,
+    url: "/productions/actor/" + user,
     type: "GET",
     headers: { 
         Authorization: `Bearer ${token}` 

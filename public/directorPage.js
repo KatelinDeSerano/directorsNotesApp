@@ -23,7 +23,7 @@ let displayDropdownProductions = (productions) => {
 function displayNotes(selectProductionId) {
     let user = localStorage.getItem("currentUser");
     var request = $.ajax({
-        url: baseUrl + "notes",
+        url: "notes",
         method: "GET",
         data: {
             productionId: selectProductionId
@@ -80,7 +80,7 @@ let token = localStorage.getItem("authToken");
 let user = localStorage.getItem("currentUser");
 
 $.ajax({
-    url: baseUrl + "productions/director/" + user,
+    url: "/productions/director/" + user,
     type: "GET",
     dataType: "json",
     headers: {
@@ -191,7 +191,7 @@ $(document).on("click", ".deleteNote", function () {
 function deleteNote(data) {
     const authToken = localStorage.getItem('authToken');
     var request = $.ajax({
-        url: baseUrl + "/notes/" + data,
+        url: "/notes/" + data,
         method: "DELETE",
         contentType: "application/json",
         headers: {

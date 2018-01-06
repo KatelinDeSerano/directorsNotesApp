@@ -32,17 +32,19 @@ function displayNotes(selectProductionId) {
     });
     request.done(function (notes) {
         let html = "";
-        // TODO:  update to match Actor's page logic
         for (var i = 0; i < notes.length; i++) {
             if (notes[i].productionId === selectProductionId) {
                 html +=
-                    `<div class="noteSnippet">
+                    `
+                    <div class="noteSnippet">
                     <i class="fa fa-times deleteNote" data="${notes[i]._id}" aria-hidden="false"></i>
                     <div data="${notes[i]._id}">
                     <input id="readToggle" type="checkbox" data="${notes[i]._id}" aria-hidden="true">Mark as read</input>
                     </div>
-                    <h3> ${notes[i].text} </h3> 
-                    </div>`;
+                    <p> To: ${notes[i].actor} </p> 
+                    <p> ${notes[i].text} </p> 
+                    </div>
+                    `;
             } else {
                 notes[i]++;
             }
@@ -214,7 +216,7 @@ function handleDeleteProduction(data) {
                 Authorization: `Bearer ${authToken}`
             },
             success: function (data) {
-                $(this).parent().remove();
+                location.reload(true);
             },
             error: function (err) {
                 alert(err.responseJSON.message);

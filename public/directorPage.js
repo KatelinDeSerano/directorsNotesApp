@@ -121,6 +121,62 @@ $("#msgform").submit(e => {
   $.ajax(settings);
 });
 
+$(document).on("click",".newProductionBtn",function(){
+    console.log("click");
+    let html="";
+    html += `<h1>Create New Production</h1>
+    <form id="newProduction">
+        Production Name<br>
+        <input type="text" id="productionName"><br>
+        Actors<br>
+        <input type="text" id="actorName"></br>
+        <button class="submit" type="button" id="addActor">Add Actor</button>
+        <button class="submit" type="submit">Submit</button>
+    </form> `;
+
+    $('.content').html(html);
+});
+
+let actors = [];
+
+$(document).on("click","#addActor",function(){
+    console.log("clicked");
+    event.preventDefault();
+    let newActor = $("#actorName").val();
+    $("#actorName").val("");
+    actors.push(newActor);
+    $("#actorName").before("\n"+ newActor);
+})
+
+$(document).on("submit","#newProduction",function(){
+    console.log("yep, you clicked this one too!");
+    event.preventDefault();
+    let productionName = $("#productionName").val();
+    let director = localStorage.getItem("currentUser");
+    let production = {
+        director: director,
+        productionName: productionName,
+        actors: actors
+    }
+    const authToken = localStorage.getItem('authToken');
+    let settings = {
+        url: "/productions",
+        type: "POST",
+        contentType: "application/json",
+        headers: { 
+            Authorization: `Bearer ${authToken}` 
+        },
+        data: JSON.stringify(production),
+        success: function(data) {
+            console.log(data);
+        },
+        error: function(err) {
+            alert(err.responseJSON.message);
+        }
+    }
+    $.ajax(settings);
+})
+
 $(document).on("click",".deleteNote",function(){
     let item = $(this).attr("data");
     deleteNote(item);

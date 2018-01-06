@@ -21,7 +21,8 @@ $("#login").submit(e => {
             }
         },
         error: function(err) {
-            alert(err.responseJSON.message);
+            // TODO: add feedback for 401 error unauthorized
+            console.log(err);
         }
     }
     $.ajax(settings);

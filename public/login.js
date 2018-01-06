@@ -21,8 +21,9 @@ $("#login").submit(e => {
             }
         },
         error: function(err) {
-            // TODO: add feedback for 401 error unauthorized
-            console.log(err);
+            if(err.status === 401){
+                alert("Username or Password is incorrect");
+            } 
         }
     }
     $.ajax(settings);

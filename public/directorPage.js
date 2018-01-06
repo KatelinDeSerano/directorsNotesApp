@@ -7,9 +7,15 @@ let displayDropdownProductions = (productions) => {
     for (var i = 0; i < productions.length; i++) {
         var selectProductionId = productions[i]._id;
         html += 
-              `<button class="productionBtn" id="productionBtn" value="${selectProductionId}" data="${selectProductionId}"
+              `<div class="dropdown">
+              <button class="productionBtn" id="productionBtn" value="${selectProductionId}" data="${selectProductionId}"
               onclick="displayNotes('${selectProductionId}')">`+ 
-              productions[i].productionName + `</button>`;
+              productions[i].productionName + `</button>
+              <div class="dropdown-content">
+              <a id="viewProductionNotes" onclick="displayNotes('${selectProductionId}')">View Production Notes</a>
+              <a id="deleteProduction" onclick="handleDeleteProduction('${selectProductionId}')">Delete Production</a>
+              </div>
+               </div>`;
     }
     $('#productionList').html(html);  
 };
@@ -20,13 +26,12 @@ function displayNotes(selectProductionId){
         url: baseUrl + "notes",
         method: "GET",
         data: { 
-                productionId : selectProductionId
+            productionId : selectProductionId
         },
         contentType: "application/json"
     });
     request.done(function (notes) {
         let html = "";
-        console.log(notes);
         // TODO:  update to match Actor's page logic
         for (var i=0; i < notes.length; i++) {
             if (notes[i].productionId === selectProductionId) {
@@ -45,7 +50,6 @@ function displayNotes(selectProductionId){
         $('.content').html(html);
     });
 };
-
 
 let msgFormProductionSelect = (productions) => {
     option = "";
@@ -124,15 +128,17 @@ $("#msgform").submit(e => {
 $(document).on("click",".newProductionBtn",function(){
     console.log("click");
     let html="";
-    html += `<h1>Create New Production</h1>
-    <form id="newProduction">
-        Production Name<br>
-        <input type="text" id="productionName"><br>
-        Actors<br>
-        <input type="text" id="actorName"></br>
-        <button class="submit" type="button" id="addActor">Add Actor</button>
-        <button class="submit" type="submit">Submit</button>
-    </form> `;
+    html += `<h1>Create A New Production</h1>
+                <form id="newProduction">
+                    <label for="productionName">Production Name</label><br>
+                    <input type="text" id="productionName"><br>
+                    <label for="actorName">Actor's Email</label><br>
+                    <div class="addActorContainer">
+                        <input type="text" id="actorName">
+                        <button class="submit" type="button" id="addActor">Add Actor</button><br>
+                    </div>
+                    <button class="submit" type="submit">Submit</button>
+                </form> `;
 
     $('.content').html(html);
 });
@@ -140,16 +146,14 @@ $(document).on("click",".newProductionBtn",function(){
 let actors = [];
 
 $(document).on("click","#addActor",function(){
-    console.log("clicked");
     event.preventDefault();
     let newActor = $("#actorName").val();
     $("#actorName").val("");
     actors.push(newActor);
-    $("#actorName").before("\n"+ newActor);
+    $("#actorName").before("<p style='color:gray; font-family:sans-serif;'>"+ newActor + "<br></p>");
 })
 
 $(document).on("submit","#newProduction",function(){
-    console.log("yep, you clicked this one too!");
     event.preventDefault();
     let productionName = $("#productionName").val();
     let director = localStorage.getItem("currentUser");
@@ -168,20 +172,21 @@ $(document).on("submit","#newProduction",function(){
         },
         data: JSON.stringify(production),
         success: function(data) {
-            console.log(data);
+            loation.alert("Your production, " + productionName + ", has successfully been created.");
+            location.reload();
         },
         error: function(err) {
             alert(err.responseJSON.message);
         }
     }
     $.ajax(settings);
-})
+});
 
 $(document).on("click",".deleteNote",function(){
     let item = $(this).attr("data");
     deleteNote(item);
     $(this).parent().remove();
-})
+});
 
 function deleteNote(data){
     var request = $.ajax({
@@ -193,3 +198,44 @@ function deleteNote(data){
         alert(err.responseJSON.message);
     };
 };
+
+// $(document).on("click","#deleteProduction",function(){
+    
+//     let confirmDelete = confirm("Are you sure you want to delete this production?  All records will be lost.");
+//     if (confirmDelete === true) {
+//         let item = $(this).attr("data");
+//         handleDeleteProduction(item);
+//         $(this).parent().remove();
+//     } else {
+//         alert("Delete cancelled.");
+//     }
+// });
+
+function handleDeleteProduction(data){
+    console.log(data);
+    let confirmDelete = confirm("Are you sure you want to delete this production?  All records will be lost.");
+    if (confirmDelete === true) {
+        let item = $(this).attr("data");
+        handleDeleteProduction(item);
+        $(this).parent().remove();
+    } else {
+        alert("Delete cancelled.");
+    }
+    var request = $.ajax({
+        url: baseUrl + "productions/" + data,
+        method: "DELETE",
+        contentType: "application/json"
+    });
+    let displayError = (error) => {
+        alert(err.responseJSON.message);
+    };
+};
+//     var request = $.ajax({
+//         url: baseUrl + "productions/" + data,
+//         method: "DELETE",
+//         contentType: "application/json"
+//     });
+//     let displayError = (error) => {
+//         alert(err.responseJSON.message);
+//     };
+// };

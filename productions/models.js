@@ -17,14 +17,6 @@ const ProductionsSchema = mongoose.Schema({
         required: true
     },
 });
-// may need this later? Alter to specify which feilds to return
-// ProductionSchema.methods.apiRepr = function() {
-//   return {
-//     username: this.username || '',
-//     firstName: this.firstName || '',
-//     lastName: this.lastName || ''
-//   };
-// };
 
 const Productions = mongoose.model('Productions', ProductionsSchema);
 

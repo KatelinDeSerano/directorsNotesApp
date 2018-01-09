@@ -8,37 +8,6 @@ const { app, closeServer, runServer } = require('./server.js');
 chai.use(chaiHttp);
 var expect = require('chai').expect;
 
-
-// describe('director app unit tests', function () {
-//     before(function () {
-//         return runServer();
-//     });
-//     after(function () {
-//         return closeServer();
-//     });
-
-//     //dummy test
-//     it('should take less than 500ms', function (done) {
-//         setTimeout(done, 300);
-//     });
-
-//     //dummy test
-//     it('should take less than 500ms', function (done) {
-//         setTimeout(done, 300);
-//     });
-
-//     //test server running
-//     it('should verify server is running', function () {
-//         return chai.request('localhost://27017')
-//             .get('/')
-//             .then(function (res) {
-//                 expect(res).to.have.status(200);
-//             })
-//     });
-
-// });
-
-
 describe('Productions', function() {
 
     before(function() {
@@ -50,7 +19,7 @@ describe('Productions', function() {
     });
   
     it('should list productions on GET', function() {
-        return chai.request(app)
+        return chai.request('localhost/directors-notes-app');
         const userId = "5a47c3204f476e1e7be3ce69"
           .get('/productions/director/userId')
           .then(function(res) {

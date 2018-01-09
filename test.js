@@ -49,10 +49,10 @@ describe('Productions', function() {
       return closeServer();
     });
   
-    it('should list productions on GET', function() {
+    it('should list user productions on GET', function() {
      
       return chai.request(app)
-        .get('/productions')
+        .get('/productions/director/:user')
         .then(function(res) {
   
           res.should.have.status(200);

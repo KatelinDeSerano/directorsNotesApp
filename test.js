@@ -52,7 +52,7 @@ describe('Productions', function() {
     it('should list user productions on GET', function() {
      
       return chai.request(app)
-        .get('/productions/director/:user')
+        .get('/productions/director')
         .then(function(res) {
   
           res.should.have.status(200);

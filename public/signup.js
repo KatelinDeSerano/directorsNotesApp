@@ -6,7 +6,6 @@ $("#signUp").submit(e => {
     let password = $("#password").val();
     let userType = $("input[name=role]:checked").val();
     let user = {firstName, lastName, email, password, userType};
-    console.log(user);
     
     let settings = {
         url: "/users",
@@ -14,7 +13,7 @@ $("#signUp").submit(e => {
         contentType: "application/json",
         data: JSON.stringify(user),
         success: function(data) {
-            // add message saying user was successfully signed up 
+            alert("You have successfully been signed up!")
             window.location.replace("./login.html");
         },
         error: function(err) {

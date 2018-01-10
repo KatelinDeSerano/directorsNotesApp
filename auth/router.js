@@ -24,7 +24,6 @@ router.post('/login', localAuth, (req, res) => {
   User.find({ email: req.body.username })
     .then(user => {
       userType = user.userType;
-      console.log(user);
       res.json({
         userType: user[0].userType,
         authToken: authToken

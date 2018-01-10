@@ -37,8 +37,6 @@ app.use('/auth/', authRouter);
 app.use('/notes/', notesRouter);
 app.use('/productions', productionsRouter);
 
-// Referenced by both runServer and closeServer. closeServer
-// assumes runServer has run and set `server` to a server object
 let server;
 
 function runServer(databaseUrl = DATABASE_URL, port = PORT) {
@@ -62,7 +60,6 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
 function closeServer() {
   return mongoose.disconnect().then(() => {
     return new Promise((resolve, reject) => {
-      console.log('Closing server');
       server.close(err => {
         if (err) {
           return reject(err);

@@ -1,7 +1,5 @@
 baseUrl = "http://localhost:8080";
 
-// REMEMBER to SEPARATE CONCERNS
-// do AJAX calls to 
 let displayProductions = (productions) => {
     
     let html = "";
@@ -41,7 +39,7 @@ function displayNotes(selectProductionId){
                     <p> ${notes[i].text} </p> 
                     </div>`;
 
-                }else{
+                } else { 
                     html += 
                     `<div class="noteSnippetRead">
                     <i class="fa fa-times deleteNote" data="${notes[i]._id}" aria-hidden="false"></i>

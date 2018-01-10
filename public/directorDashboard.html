@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
@@ -7,7 +8,7 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
   <link href="app.css" rel="stylesheet" type="text/css" />
-  
+
 </head>
 
 <body>
@@ -16,39 +17,44 @@
       <li>
         <a class="active" href="./directorDashboard.html">Director's Dashboard</a>
       </li>
-      
-        <button class="newProductionBtn">Create New Production</button>
-        <h4>Your Productions</h4>
-        <div id="productionList"></div>
+
+      <button class="newProductionBtn">Create New Production</button>
+      <h4>Your Productions</h4>
+      <div id="productionList"></div>
     </ul>
-  </nav> 
+  </nav>
   <div class="content">
-    <h1>Hello Director!</h1> 
-    <h2>Create a new note!</h2><br>
+    <h1>Hello Director!</h1>
+    <h2>Create a new note!</h2>
+    <br>
     <div class="msgFormContainer">
-    <form id="msgform">
-        <label for="productionName">Select a Production and an Actor:</label></br>
+      <form id="msgform">
+        <label for="productionName">Select a Production and an Actor:</label>
+        </br>
         <input type="text" id="productionName" hidden/>
         <div class="selectContainer">
-        <div class="selectItem">
-        <select id="production" autofocus required >
-            <option>Choose a Production</option>
-        </select>
-      </div>
-      <div class="selectItem"> 
-        <select id="actor" autofocus required>
-            <option>Choose an Actor</option>
-        </select></br>
-      </div>
-      </div>
-      <div class="notesContainer">
-        <label for="text">Note:</label></br>
-        <textarea id="msg" rows="8" cols="50" placeholder="type your note here..."></textarea><br>
-      </div>
-      <button class="submit" type="submit" value="Submit">Submit</button>
-  
-    </form>
-  </div> 
+          <div class="selectItem">
+            <select id="production" autofocus required>
+              <option>Choose a Production</option>
+            </select>
+          </div>
+          <div class="selectItem">
+            <select id="actor" autofocus required>
+              <option>Choose an Actor</option>
+            </select>
+            </br>
+          </div>
+        </div>
+        <div class="notesContainer">
+          <label for="text">Note:</label>
+          </br>
+          <textarea id="msg" rows="8" cols="50" placeholder="type your note here..."></textarea>
+          <br>
+        </div>
+        <button class="submit" type="submit" value="Submit">Submit</button>
+
+      </form>
+    </div>
   </div>
   <script src="./directorPage.js"></script>
 </body>

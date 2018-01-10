@@ -58,7 +58,6 @@ router.delete('/:id', jwtAuth, (req, res) => {
   Productions
     .findByIdAndRemove(req.params.id)
     .then(() => {
-      console.log(`Deleted Production with id \`${req.params.ID}\``);
       res.status(204).end();
     });
 });

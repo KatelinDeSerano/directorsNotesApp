@@ -28,7 +28,6 @@ router.get('/', function(req, res) {
       .find({productionId: req.query.productionId})
       .exec()
       .then(notes => {
-          console.log(notes);
           res.status(200).json(notes);
       })
       .catch(err => {

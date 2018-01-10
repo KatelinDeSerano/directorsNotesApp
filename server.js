@@ -2,8 +2,10 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 const morgan = require('morgan');
 const passport = require('passport');
+
 const { router: usersRouter } = require('./users');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 const { router: notesRouter } = require('./notes');

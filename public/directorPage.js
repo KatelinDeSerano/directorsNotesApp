@@ -172,7 +172,7 @@ $(document).on("submit", "#newProduction", function () {
         },
         data: JSON.stringify(production),
         success: function (data) {
-            loation.alert("Your production, " + productionName + ", has successfully been created.");
+            location.alert("Your production, " + productionName + ", has successfully been created.");
             location.reload();
         },
         error: function (err) {

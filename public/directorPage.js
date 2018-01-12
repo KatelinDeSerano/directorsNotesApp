@@ -65,8 +65,6 @@ let msgFormProductionSelect = (productions) => {
                 var option = '';
                 $('#productionName').val(productions[j].productionName);
                 $("#actor option").remove();
-                console.log(productions[j].productionName);
-
                 for (var k = 0; k < productions[j].actors.length; k++) {
                     option += '<option>' + productions[j].actors[k] + '</option>';
                 }
@@ -126,7 +124,6 @@ $("#msgform").submit(e => {
 });
 
 $(document).on("click", ".newProductionBtn", function () {
-    console.log("click");
     let html = "";
     html += `<h1>Create A New Production</h1>
                 <form id="newProduction">
@@ -204,7 +201,6 @@ function deleteNote(data) {
 };
 
 function handleDeleteProduction(data) {
-    console.log(data);
     let confirmDelete = confirm("Are you sure you want to delete this production?  All records will be lost.");
     if (confirmDelete === true) {
         const authToken = localStorage.getItem('authToken');

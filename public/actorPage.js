@@ -28,7 +28,6 @@ function displayNotes(selectProductionId){
         
         for (var i=0; i < notes.length; i++) {
             if (notes[i].productionId === selectProductionId && notes[i].actor === user) {
-                console.log(notes[i].readStatus);
                 if (notes[i].readStatus === false){
                     html += 
                     `<div class="noteSnippet">
@@ -87,7 +86,6 @@ $(document).on("click",".readNote",function(){
 })
 
 function readNote(data){
-    console.log("update true")
     var request = $.ajax({
         url: "/notes/" + data,
         method: "PUT",

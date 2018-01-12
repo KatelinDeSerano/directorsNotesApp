@@ -1,4 +1,4 @@
-# directorsNotesApp
+# Director's Notes App
 
 App for taking and distributing production notes. 
 
@@ -28,6 +28,28 @@ Actors can view their notes and mark them as read or delete them.
 
 ![View Note Page](/Screenshots/viewNotePage.png?raw=true "View Note Page")
 
+
+Want to test it? 
+
+I have created a few test users so you may test how it works without creating multiple users of your own.  Below is the login info: 
+
+Director user: 
+
+Email: pat@director.com
+Password: Password123
+
+Actor user: 
+
+Email: sam@actor.com
+Password: Password123
+
+Email: lisa@actor.com
+Password: Password123
+
+Email: james@actor.com
+Password: Password123
+
+Happy testing!  (please keep messages appropriate)
 
 Technologies Used: HTML CSS JAVASCRIPT JQUERY NODE.JS
 

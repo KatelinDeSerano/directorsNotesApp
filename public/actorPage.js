@@ -1,14 +1,17 @@
 baseUrl = "http://localhost:8080";
 
 let displayProductions = (productions) => {
-    
     let html = "";
-    for (var i = 0; i < productions.length; i++) {
+    if(productions.length === 0) {
+        html += `<h3>Looks like you aren't involved in any productions yet</h3>`;
+    } else {
+        for (var i = 0; i < productions.length; i++) {
         var selectProductionId = productions[i]._id;
         html += 
               `<button class="productionBtn" id="productionBtn" value="${selectProductionId}" data="${selectProductionId}"
               onclick="displayNotes('${selectProductionId}')">`+ 
-              productions[i].productionName + `</button>`;  
+              productions[i].productionName + `</button>`; 
+        }
     }
     $('#productionList').html(html);
 };
@@ -28,7 +31,7 @@ function displayNotes(selectProductionId){
         
         for (var i=0; i < notes.length; i++) {
             if (notes[i].productionId === selectProductionId && notes[i].actor === user) {
-                if (notes[i].readStatus === false){
+                if (notes[i].readStatus === false) {
                     html += 
                     `<div class="noteSnippet">
                     <i class="fa fa-times deleteNote" data="${notes[i]._id}" aria-hidden="false"></i>
@@ -48,7 +51,7 @@ function displayNotes(selectProductionId){
                     <p> ${notes[i].text} </p> 
                     </div>`;
                 }
-
+            // else if the # of notes in notes array = 0,  display "sorry, you have no notes for this production message"
             } else {
                 notes[i]++;
             }

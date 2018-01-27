@@ -4,6 +4,10 @@ baseUrl = "http://localhost:8080/";
 
 let displayDropdownProductions = (productions) => {
     let html = "";
+    console.log(productions.length);
+    if (productions.length === 0) {
+        html += `<h3>Looks like you have no productions created,  click the button above to create a new production</h3>`;
+    } else {
     for (var i = 0; i < productions.length; i++) {
         var selectProductionId = productions[i]._id;
         html +=
@@ -16,6 +20,7 @@ let displayDropdownProductions = (productions) => {
                 <a id="deleteProduction" onclick="handleDeleteProduction('${selectProductionId}')">Delete Production</a>
               </div>
                </div>`;
+    }
     }
     $('#productionList').html(html);
 };

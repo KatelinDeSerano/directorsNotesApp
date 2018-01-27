@@ -26,11 +26,15 @@ function displayNotes(selectProductionId){
         },
         contentType: "application/json"
     });
+    
     request.done(function (notes) {
-        let html = "";
         
+      
+       let  html = "";
         for (var i=0; i < notes.length; i++) {
+            
             if (notes[i].productionId === selectProductionId && notes[i].actor === user) {
+                
                 if (notes[i].readStatus === false) {
                     html += 
                     `<div class="noteSnippet">
@@ -53,6 +57,7 @@ function displayNotes(selectProductionId){
                 }
             // else if the # of notes in notes array = 0,  display "sorry, you have no notes for this production message"
             } else {
+                
                 notes[i]++;
             }
         }

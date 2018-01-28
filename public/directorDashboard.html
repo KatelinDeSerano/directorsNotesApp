@@ -8,6 +8,7 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
   <link href="app.css" rel="stylesheet" type="text/css" />
+  <script src="https://use.fontawesome.com/6822355a20.js"></script>
 
 </head>
 
@@ -24,10 +25,22 @@
     </ul>
   </nav>
   <div class="content">
+    <div id="notesDisplay"></div>
     <h1>Hello Director!</h1>
-    <h2>Create a new note!</h2>
-    <br>
-    <div class="msgFormContainer">
+    <h1>Create A New Production</h1>
+                <form id="newProduction">
+                    <label for="productionName">Production Name</label><br>
+                    <input type="text" id="productionName"><br>
+                    <label for="actorName">Actor's Email</label><br>
+                    <div class="addActorContainer">
+                        <input type="text" id="actorName">
+                        <button class="submit" type="button" id="addActor">Add Actor</button><br>
+                    </div>
+                    
+                    <button class="submitNewProduction" type="submit">Submit</button>
+                    
+                </form>
+    <!-- <div class="msgFormContainer">
       <form id="msgform">
         <label for="productionName">Select a Production and an Actor:</label>
         </br>
@@ -53,9 +66,9 @@
         </div>
         <button class="submit" type="submit" value="Submit">Submit</button>
 
-      </form>
-    </div>
-  </div>
+      </form> -->
+    
+  </div> 
   <script src="./directorPage.js"></script>
 </body>
 

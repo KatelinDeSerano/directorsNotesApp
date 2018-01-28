@@ -35,6 +35,18 @@ router.get('/actor/:user', jwtAuth, (req, res) => {
     })
 });
 
+// router.get('/:id', jwtAuth, (req, res) => {
+//   Productions
+//     .find({ production: req.params.id })
+//     .exec()
+//     .then(productions => {
+//       res.status(200).json(productions);
+//     })
+//     .catch(err => {
+//       res.status(500).json({ message: 'something went wrong' });
+//     })
+// });
+
 router.post('/', jwtAuth, (req, res) => {
   const requiredFields = ['productionName', 'actors', 'director'];
   for (let i = 0; i < requiredFields.length; i++) {

@@ -28,8 +28,6 @@ function displayNotes(selectProductionId){
     });
     
     request.done(function (notes) {
-        
-      
        let  html = "";
         for (var i=0; i < notes.length; i++) {
             

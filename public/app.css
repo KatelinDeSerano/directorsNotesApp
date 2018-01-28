@@ -4,6 +4,7 @@ body {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: 100% 100%; 
+    overflow-y: hidden;
 }
 
 h1, h2 {
@@ -11,6 +12,7 @@ h1, h2 {
     font-family: 'Inconsolata', monospace;
     font-size: 42px;
     text-align: center;
+    text-shadow: 2px 2px 4px #000000;
 }
 
 h3 {
@@ -40,6 +42,7 @@ p {
 
 .cancelBtn {
     font-size: 1rem;
+    text-decoration: none;
 }
 
 .landingPageContent {
@@ -103,6 +106,7 @@ p {
     padding: 15px 24px;
     text-align: center;
     text-decoration: none;
+    box-shadow: 2px 2px 4px #000000;
 }
 
 .submit:hover {
@@ -122,6 +126,7 @@ p {
     text-align: center;
     text-decoration: none;
     width: 100%;
+    
 }
 
 #submitForm:hover {
@@ -224,24 +229,38 @@ div.content {
     margin: auto;
     padding: 30px;
     text-shadow: none;
-    width: 75%;
-    position: fixed;
+    width: 70%;
 }
 
 #newProduction input {
     font-size: 1rem;
     margin: 20px 0;
     padding: 10px 0;
-    width: 75%;
+    width: 60%;
 }
 
 #newProduction label {
+    margin-top: 15px;
     text-decoration: underline;
 }
 
-#newProduction button {
+.submitNewProduction {
     background-color: gray;
+    border: none;
+    color:  #fff;
+    display: inline-block;
+    font-family: sans-serif;
+    font-size: 16px;
+    margin: auto;
+    padding: 15px 24px;
+    text-align: center;
+    text-decoration: none;
+}
+
+#addActor {
+    background-color: rgb(40, 147, 228);
     color: white;
+    box-shadow: none;
 }
 #newProduction button:hover {
     background-color: goldenrod;
@@ -258,6 +277,7 @@ div.content {
     font-family: 'Inconsolata', monospace;
     font-size: 1.5rem;
     margin: auto;
+    margin-top: 2rem;
     padding: 30px;
     text-shadow: none;
     width: 75%;
@@ -270,6 +290,7 @@ div.content {
 .msgFormContainer button {
     background-color: gray;
     color: white;
+    box-shadow: none;
 }
 
 .selectContainer {
@@ -287,7 +308,6 @@ select {
     border-radius: 1px;
     padding: 1em 2em 1em 1em;
     font-size: 1em;
-    box-shadow: 5px 5px 10px #C3BAAA;
     border: 1px solid #C3BAAA;
     width: 15em;
     
@@ -420,8 +440,7 @@ select::-ms-expand {
 }
 
 textarea {
-    border: 1px solid #C3BAAA;
-    box-shadow: 5px 5px 10px #C3BAAA;
+    border: 1px solid #3C4042;
     font-size: 1rem;
     margin: 20px 0;
     padding: 1rem;

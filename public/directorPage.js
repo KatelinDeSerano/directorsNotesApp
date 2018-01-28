@@ -1,23 +1,31 @@
-
 baseUrl = "http://localhost:8080/";
 
+let userProductionsArray = [];
+
+let setUserProductions = (productions) => {
+    this.userProductionsArray = productions;
+}
 
 let displayDropdownProductions = (productions) => {
+    
     let html = "";
-    console.log(productions.length);
     if (productions.length === 0) {
         html += `<h3>Looks like you have no productions created,  click the button above to create a new production</h3>`;
     } else {
     for (var i = 0; i < productions.length; i++) {
         var selectProductionId = productions[i]._id;
+        var productionName = productions[i].productionName;
+        
         html +=
             `<div class="dropdown">
-              <button class="productionBtn" id="productionBtn" value="${selectProductionId}" data="${selectProductionId}"
-              onclick="displayNotes('${selectProductionId}')">` +
-            productions[i].productionName + `</button>
+              <button class="productionBtn" id="productionBtn" value="${selectProductionId}" data="${selectProductionId, productionName}"
+              onclick="createNotes('${selectProductionId}','${productionName}')">` +
+                productionName + `</button>
               <div class="dropdown-content">
+                <a id="createNotes" onclick="createNotes('${selectProductionId}','${productionName}')">Create a New Note</a>
                 <a id="viewProductionNotes" onclick="displayNotes('${selectProductionId}')">View Production Notes</a>
                 <a id="deleteProduction" onclick="handleDeleteProduction('${selectProductionId}')">Delete Production</a>
+                <a id="dashboard" href="./directorDashboard.html">Return to Dashboard</a>
               </div>
                </div>`;
     }
@@ -25,72 +33,59 @@ let displayDropdownProductions = (productions) => {
     $('#productionList').html(html);
 };
 
-function displayNotes(selectProductionId) {
-    let user = localStorage.getItem("currentUser");
-    var request = $.ajax({
-        url: "notes",
-        method: "GET",
-        data: {
-            productionId: selectProductionId
-        },
-        contentType: "application/json"
-    });
-    request.done(function (notes) {
-        let html = "";
-        for (var i = 0; i < notes.length; i++) {
-            if (notes[i].productionId === selectProductionId) {
-                html +=
-                    `
-                    <div class="noteSnippet">
-                    <i class="fa fa-times deleteNote" data="${notes[i]._id}" aria-hidden="false"></i>
-                    <div data="${notes[i]._id}">
-                    <input id="readToggle" type="checkbox" data="${notes[i]._id}" aria-hidden="true">Mark as read</input>
-                    </div>
-                    <p> To: ${notes[i].actor} </p> 
-                    <p> ${notes[i].text} </p> 
-                    </div>
-                    `;
-            } else {
-                notes[i]++;
-            }
-        }
-        $('.content').html(html);
-    });
+function createNotes(selectProductionId, productionName) {
+    
+    let html = "";
+    html += `
+    <div class="msgFormContainer">
+    <form id="msgform">
+      <h1>Notes for ` +
+      productionName + `</h1>
+      <label for="productionName">Select an Actor:</label>
+      </br>
+      <div class="selectContainer">
+      <input type="text" id="productionName" value="${productionName}" hidden/>
+      <select id="production"  style="display:none" required>
+      <option>`+ selectProductionId +`</option>
+    </select>
+        <div class="selectItem">
+          <select id="actor" autofocus required>
+            <option>Choose an Actor</option>
+          </select>
+          </br>
+        </div>
+      </div>
+      <div class="notesContainer">
+        <label for="text">Note:</label>
+        </br>
+        <textarea id="msg" rows="8" cols="50" placeholder="type your note here..."></textarea>
+        <br>
+      </div>
+      <button class="submit" type="submit" value="Submit">Submit</button>
+
+    </form>
+  </div>
+</div>  `;
+    
+    $('.content').html(html);
+    msgFormProductionSelect(selectProductionId);
+    
 };
 
-let msgFormProductionSelect = (productions) => {
-    option = "";
-    for (var i = 0; i < productions.length; i++) {
-        option += '<option value="' + productions[i]._id + '">' + productions[i].productionName + '</option>';
-    };
-    $('#production').append(option);
-    $('#production').on('change', function () {
-        for (var j = 0; j < productions.length; j++) {
-            if (productions[j]._id === this.value) {
-                var option = '';
-                $('#productionName').val(productions[j].productionName);
-                $("#actor option").remove();
-                for (var k = 0; k < productions[j].actors.length; k++) {
-                    option += '<option>' + productions[j].actors[k] + '</option>';
-                }
+
+function msgFormProductionSelect(selectProductionId) {
+    console.log(this.userProductionsArray)
+
+    let userProductions = this.userProductionsArray;
+    for (var i=0;i<userProductions.length; i++){
+        if (userProductions[i]._id === selectProductionId){
+            var option = ''; 
+            for (var k = 0; k < userProductions[i].actors.length; k++) {
+                option += '<option>' + userProductions[i].actors[k] + '</option>';     
+            }
                 $('#actor').append(option);
-            }
         }
-    });
-};
-
-let token = localStorage.getItem("authToken");
-let user = localStorage.getItem("currentUser");
-
-$.ajax({
-    url: "/productions/director/" + user,
-    type: "GET",
-    dataType: "json",
-    headers: {
-        Authorization: `Bearer ${token}`
-    },
-    success: [displayDropdownProductions, msgFormProductionSelect]
-});
+    }
 
 $("#msgform").submit(e => {
     e.preventDefault();
@@ -119,30 +114,105 @@ $("#msgform").submit(e => {
         },
         data: JSON.stringify(notes),
         success: function (data) {
-            $('#msgform').trigger("reset");
+            alert("Note has been successfully sent.")
         },
         error: function (err) {
             alert(err.responseJSON.message);
         }
     }
+    $('#msgform').trigger("reset");
     $.ajax(settings);
 });
+};
 
-$(document).on("click", ".newProductionBtn", function () {
-    let html = "";
-    html += `<h1>Create A New Production</h1>
-                <form id="newProduction">
-                    <label for="productionName">Production Name</label><br>
-                    <input type="text" id="productionName"><br>
-                    <label for="actorName">Actor's Email</label><br>
-                    <div class="addActorContainer">
-                        <input type="text" id="actorName">
-                        <button class="submit" type="button" id="addActor">Add Actor</button><br>
+function displayNotes(selectProductionId) {
+    let user = localStorage.getItem("currentUser");
+    var request = $.ajax({
+        url: "notes",
+        method: "GET",
+        data: {
+            productionId: selectProductionId
+        },
+        contentType: "application/json"
+    });
+    request.done(function (notes) {
+        let html = "";
+        html += `<div id="notesDisplay">`
+        for (var i = 0; i < notes.length; i++) {
+            if (notes[i].productionId === selectProductionId) {
+                if (notes[i].readStatus === false) {
+                    html += 
+                    `<div class="noteSnippet">
+                    <div data="${notes[i]._id}">
+                    <span class="readNote" data="${notes[i]._id}"><i class="fa fa-square-o" aria-hidden="true" data="${notes[i]._id}"></i>&nbsp; Mark as read</span>
                     </div>
-                    <button class="submit" type="submit">Submit</button>
-                </form> `;
+                    <p> To: ${notes[i].actor} </p>
+                    <p> ${notes[i].text} </p> 
+                    </div>`;
 
-    $('.content').html(html);
+                } else { 
+                    html += 
+                    `<div class="noteSnippetRead">
+                    <div data="${notes[i]._id}">
+                    <span class="readNote" data="${notes[i]._id}"><i class="fa fa-check-square-o" aria-hidden="true" data="${notes[i]._id}"></i>&nbsp; Mark as read</span>
+                    </div>
+                    <p> To: ${notes[i].actor} </p>
+                    <p> ${notes[i].text} </p> 
+                    </div>`;
+                }
+            } else {
+                notes[i]++;
+            }
+             
+        }
+        html += `</div>`
+        $('.content').html(html);
+    });
+};
+
+$(document).on("click",".readNote",function(){
+    let item = $(this).attr("data");
+    readNote(item);
+    $(this).parent().parent().attr("class","noteSnippetRead");
+    $(this).find("i").attr("class","fa fa-check-square-o");
+})
+
+function readNote(data){
+    var request = $.ajax({
+        url: "/notes/" + data,
+        method: "PUT",
+        contentType: "application/json"
+    });
+   
+    let displayError = (error) => {
+        alert(err.responseJSON.message);
+    };
+};
+
+function readToggle(data){
+    var request = $.ajax({
+        url: "/notes/" + data,
+        method: "PUT",
+        contentType: "application/json"
+    });
+   
+    let displayError = (error) => {
+        alert(err.responseJSON.message);
+    };
+};
+
+
+let token = localStorage.getItem("authToken");
+let user = localStorage.getItem("currentUser");
+
+$.ajax({
+    url: "/productions/director/" + user,
+    type: "GET",
+    dataType: "json",
+    headers: {
+        Authorization: `Bearer ${token}`
+    },
+    success: [displayDropdownProductions, setUserProductions]
 });
 
 let actors = [];
@@ -152,7 +222,7 @@ $(document).on("click", "#addActor", function () {
     let newActor = $("#actorName").val();
     $("#actorName").val("");
     actors.push(newActor);
-    $("#actorName").before("<p style='color:gray; font-family:sans-serif;'>" + newActor + "<br></p>");
+    $("#actorName").before("<p style='font-family:sans-serif;'>" + newActor + "<br></p>");
 })
 
 $(document).on("submit", "#newProduction", function () {
@@ -174,7 +244,7 @@ $(document).on("submit", "#newProduction", function () {
         },
         data: JSON.stringify(production),
         success: function (data) {
-            location.alert("Your production, " + productionName + ", has successfully been created.");
+            alert("Your production, " + productionName + ", has successfully been created.");
             location.reload();
         },
         error: function (err) {

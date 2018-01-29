@@ -13,10 +13,13 @@ $("#login").submit(e => {
             localStorage.setItem("authToken", data.authToken);
             localStorage.setItem("currentUser", username);
             localStorage.setItem("userType", data.userType);
+            localStorage.setItem("firstName", data.firstName);
             
             if (data.userType === "director") {
+
                 window.location.replace("./directorDashboard.html");      
             }  else if (data.userType === "actor") {
+
                 window.location.replace("./actorDashboard.html");
             }
         },

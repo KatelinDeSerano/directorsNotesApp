@@ -16,7 +16,7 @@
   <nav>
     <ul class="sidenav">
       <li>
-        <a class="active" href="./directorDashboard.html">Director's Dashboard</a>
+          <li><a class="active" href="#" id="name"></a></li>
       </li>
 
       <button class="newProductionBtn">Create New Production</button>
@@ -24,50 +24,22 @@
       <div id="productionList"></div>
     </ul>
   </nav>
+  <button id="logout" class=submit>Log Out</button>
   <div class="content">
-    <div id="notesDisplay"></div>
-    <h1>Hello Director!</h1>
-    <h1>Create A New Production</h1>
-                <form id="newProduction">
-                    <label for="productionName">Production Name</label><br>
-                    <input type="text" id="productionName"><br>
-                    <label for="actorName">Actor's Email</label><br>
-                    <div class="addActorContainer">
-                        <input type="text" id="actorName">
-                        <button class="submit" type="button" id="addActor">Add Actor</button><br>
-                    </div>
-                    
-                    <button class="submitNewProduction" type="submit">Submit</button>
-                    
-                </form>
-    <!-- <div class="msgFormContainer">
-      <form id="msgform">
-        <label for="productionName">Select a Production and an Actor:</label>
-        </br>
-        <input type="text" id="productionName" hidden/>
-        <div class="selectContainer">
-          <div class="selectItem">
-            <select id="production" autofocus required>
-              <option>Choose a Production</option>
-            </select>
-          </div>
-          <div class="selectItem">
-            <select id="actor" autofocus required>
-              <option>Choose an Actor</option>
-            </select>
-            </br>
-          </div>
-        </div>
-        <div class="notesContainer">
-          <label for="text">Note:</label>
-          </br>
-          <textarea id="msg" rows="8" cols="50" placeholder="type your note here..."></textarea>
-          <br>
-        </div>
-        <button class="submit" type="submit" value="Submit">Submit</button>
-
-      </form> -->
     
+    <div id="notesDisplay"></div>
+    <h1 id="greeting"></h1>
+    <h1>Create A New Production</h1>
+      <form id="newProduction">
+          <label for="productionName">Production Name</label><br>
+          <input type="text" id="productionName"><br>
+          <label for="actorName">Actor's Email</label><br>
+          <div class="addActorContainer">
+              <input type="text" id="actorName">
+              <button class="submit" type="button" id="addActor">Add Actor</button><br>
+          </div>
+          <button class="submitNewProduction" type="submit">Submit</button>
+      </form>  
   </div> 
   <script src="./directorPage.js"></script>
 </body>

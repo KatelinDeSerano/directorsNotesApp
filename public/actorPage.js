@@ -1,5 +1,17 @@
 baseUrl = "http://localhost:8080";
 
+// let username = localStorage.getItem("firstName");
+
+function personalize() {
+    let name = localStorage.getItem("firstName");
+
+    $("#name").html(name + "&#8217s Dashboard");
+    $("#greeting").html("Welcome, " + name +"! <br> Click on a production to view your notes!");
+    
+};
+
+personalize();
+
 let displayProductions = (productions) => {
     let html = "";
     if(productions.length === 0) {
@@ -8,9 +20,15 @@ let displayProductions = (productions) => {
         for (var i = 0; i < productions.length; i++) {
         var selectProductionId = productions[i]._id;
         html += 
-              `<button class="productionBtn" id="productionBtn" value="${selectProductionId}" data="${selectProductionId}"
+              `<div class="dropdown">
+              <button class="productionBtn" id="productionBtn" value="${selectProductionId}" data="${selectProductionId}"
               onclick="displayNotes('${selectProductionId}')">`+ 
-              productions[i].productionName + `</button>`; 
+              productions[i].productionName + `</button>
+              <div class="dropdown-content">
+                <a  onclick="displayNotes('${selectProductionId}')">View Production Notes</a>
+                <a id="dashboard" href="./actorDashboard.html">Return to Dashboard</a>
+              </div>
+              </div>`; 
         }
     }
     $('#productionList').html(html);
@@ -29,10 +47,10 @@ function displayNotes(selectProductionId){
     
     request.done(function (notes) {
        let  html = "";
+        let notesExist = false;
         for (var i=0; i < notes.length; i++) {
-            
-            if (notes[i].productionId === selectProductionId && notes[i].actor === user) {
-                
+            if (notes[i].actor === user) {
+                notesExist = true;
                 if (notes[i].readStatus === false) {
                     html += 
                     `<div class="noteSnippet">
@@ -53,15 +71,15 @@ function displayNotes(selectProductionId){
                     <p> ${notes[i].text} </p> 
                     </div>`;
                 }
-            // else if the # of notes in notes array = 0,  display "sorry, you have no notes for this production message"
-            } else {
-                
-                notes[i]++;
-            }
+            } 
         }
+        if (!notesExist) {
+            html += "<h1>You don't have any notes for this production!</h1>";
+        }
+
         $('#notesDisplay').html(html);
     });
-};
+}
 
 let displayError = (error) => {
     alert(err.responseJSON.message);
@@ -127,6 +145,14 @@ $.ajax ({
     dataType: "json",
     success: displayProductions,
     error: displayError
-  }); 
+}); 
+
+$(document).on("click", "#logout", function () {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('userType');
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('firstName');
+    window.location.replace("./index.html");
+});
 
 

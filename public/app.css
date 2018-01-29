@@ -40,6 +40,15 @@ p {
    font-size: 1rem;
 }
 
+#logout {
+    position: fixed;
+    right: 1rem;
+    z-index: 1;
+    margin: 1rem;
+    background-color: rgb(40, 147, 228);
+    color: white;
+}
+
 .cancelBtn {
     font-size: 1rem;
     text-decoration: none;

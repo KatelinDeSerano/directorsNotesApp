@@ -1,5 +1,15 @@
 baseUrl = "http://localhost:8080/";
 
+function personalize() {
+    let name = localStorage.getItem("firstName");
+
+    $("#name").html(name + "&#8217s Dashboard");
+    $("#greeting").html("Welcome, " + name +"! <br>");
+    
+};
+
+personalize();
+
 let userProductionsArray = [];
 
 let setUserProductions = (productions) => {
@@ -298,3 +308,11 @@ function handleDeleteProduction(data) {
         alert("Delete cancelled.");
     }
 };
+
+$(document).on("click", "#logout", function () {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('userType');
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('firstName');
+    window.location.replace("./index.html");
+});

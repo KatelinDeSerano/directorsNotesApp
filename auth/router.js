@@ -26,7 +26,8 @@ router.post('/login', localAuth, (req, res) => {
       userType = user.userType;
       res.json({
         userType: user[0].userType,
-        authToken: authToken
+        authToken: authToken,
+        firstName: user[0].firstName
       });
 
     })

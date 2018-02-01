@@ -4,7 +4,7 @@ function personalize() {
     let name = localStorage.getItem("firstName");
 
     $("#name").html(name + "&#8217s Dashboard");
-    $("#greeting").html("Welcome, " + name +"! <br>");
+    $("#greeting").html("Welcome, " + name +"! <br>s ");
     
 };
 

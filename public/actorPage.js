@@ -1,16 +1,27 @@
 baseUrl = "http://localhost:8080";
 
-// let username = localStorage.getItem("firstName");
-
 function personalize() {
     let name = localStorage.getItem("firstName");
 
     $("#name").html(name + "&#8217s Dashboard");
-    $("#greeting").html("Welcome, " + name +"! <br> Click on a production to view your notes!");
-    
+    $("#greeting").html("Welcome, " + name +"! <br> Click on a production to view your notes!");  
 };
 
 personalize();
+
+var collapse = document.getElementsByClassName("collapsible");
+console.log(collapse);
+for (let i = 0; i < collapse.length; i++) {
+  collapse[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var navContent = this.nextElementSibling;
+    if (navContent.style.maxHeight){
+      navContent.style.maxHeight = null;
+    } else {
+      navContent.style.maxHeight = navContent.scrollHeight + "px";
+    } 
+  });
+}
 
 let displayProductions = (productions) => {
     let html = "";
